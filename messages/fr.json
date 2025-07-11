@@ -1,0 +1,30 @@
+{
+  "home": {
+    "headline": "Des sites clairs, rapides, rentables.",
+    "description": "NL Project conçoit des sites web professionnels qui captivent votre audience et stimulent votre croissance. Simplicité, performance et retour sur investissement garantis.",
+    "cta": "Demander un devis gratuit"
+  },
+  "form": {
+    "title": "Contactez-nous",
+    "subtitle": "Prêt à lancer votre projet ? Remplissez le formulaire ci-dessous et je vous recontacterai rapidement.",
+    "full_name_label": "Nom complet",
+    "full_name_placeholder": "Votre nom",
+    "email_label": "Email",
+    "email_placeholder": "votre@email.com",
+    "phone_label": "Téléphone",
+    "phone_placeholder": "Votre numéro de téléphone",
+    "pack_label": "Pack sélectionné",
+    "pack_placeholder": "Choisissez un pack",
+    "message_label": "Message",
+    "message_placeholder": "Décrivez votre projet...",
+    "submit": "Envoyer le message",
+    "sending": "Envoi en cours..."
+  },
+  "hero": {
+    "title": "Des sites clairs, rapides, <br /> rentables.",
+    "description": "NL Project conçoit des sites web professionnels qui captivent votre audience et stimulent votre croissance. Simplicité, performance et retour sur investissement garantis."
+  },
+  "footer": {
+    "copyright": "NL Project. Tous droits réservés."
+  }
+} 
