@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Mountain, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet"
 import { usePathname } from "next/navigation"
 import { scrollToContactForm } from "@/components/contact-form-section"
 import React from "react"
@@ -54,6 +54,16 @@ export default function SiteHeader() {
                   key={link.href}
                   href={link.href}
                   className="text-sm font-medium transition-colors hover:text-primary"
+                  onClick={e => {
+                    e.preventDefault();
+                    const target = document.querySelector(link.href);
+                    const header = document.querySelector("header.sticky");
+                    if (target) {
+                      const headerHeight = header ? header.getBoundingClientRect().height : 0;
+                      const y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+                      window.scrollTo({ top: y, behavior: "smooth" });
+                    }
+                  }}
                 >
                   {link.label}
                 </a>
@@ -75,26 +85,40 @@ export default function SiteHeader() {
             <div className="flex flex-col gap-4 py-6">
               {navLinks.map((link) => (
                 link.href === "#contact"
-                  ? <a
-                      key={link.href}
-                      href={link.href}
-                      className="text-lg font-semibold hover:text-primary"
-                      onClick={e => {
-                        e.preventDefault();
-                        scrollToContactForm();
-                        setIsMenuOpen(false); // Ferme le menu
-                      }}
-                    >
-                      {link.label}
-                    </a>
-                  : <a
-                      key={link.href}
-                      href={link.href}
-                      className="text-lg font-semibold hover:text-primary"
-                      onClick={() => setIsMenuOpen(false)} // Ferme le menu sur tous les liens
-                    >
-                      {link.label}
-                    </a>
+                  ? (
+                    <SheetClose asChild key={link.href}>
+                      <a
+                        href={link.href}
+                        className="text-lg font-semibold hover:text-primary"
+                        onClick={e => {
+                          e.preventDefault();
+                          scrollToContactForm();
+                        }}
+                      >
+                        {link.label}
+                      </a>
+                    </SheetClose>
+                  )
+                  : (
+                    <SheetClose asChild key={link.href}>
+                      <a
+                        href={link.href}
+                        className="text-lg font-semibold hover:text-primary"
+                        onClick={e => {
+                          e.preventDefault();
+                          const target = document.querySelector(link.href);
+                          const header = document.querySelector("header.sticky");
+                          if (target) {
+                            const headerHeight = header ? header.getBoundingClientRect().height : 0;
+                            const y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
+                            window.scrollTo({ top: y, behavior: "smooth" });
+                          }
+                        }}
+                      >
+                        {link.label}
+                      </a>
+                    </SheetClose>
+                  )
               ))}
             </div>
           </SheetContent>
