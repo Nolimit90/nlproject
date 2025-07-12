@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { usePathname } from "next/navigation"
 import { scrollToContactForm } from "@/components/contact-form-section"
+import React from "react"
 
 export default function SiteHeader() {
   const navLinks = [
@@ -15,6 +16,17 @@ export default function SiteHeader() {
     { href: "#whyme", label: "Pourquoi moi ?" },
     { href: "#contact", label: "Contact" },
   ]
+
+  // Ajout du state pour contrôler l'ouverture du menu mobile
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+
+  // Pour forcer la réactivation du scroll si besoin
+  React.useEffect(() => {
+    if (!isMenuOpen) {
+      // Radix gère déjà le scroll, mais on force le focus sur le body pour éviter les bugs
+      document.body.style.removeProperty('overflow')
+    }
+  }, [isMenuOpen])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -48,14 +60,15 @@ export default function SiteHeader() {
           ))}
         </nav>
         <div className="flex items-center gap-2 lg:hidden">
-        <Sheet>
+        <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="lg:hidden">
               <Menu className="h-6 w-6" />
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right">
+          {/* On retire les transitions inutiles sur SheetContent */}
+          <SheetContent side="right" className="transition-none duration-0">
               <SheetTitle>
                 <span className="sr-only">Menu principal</span>
               </SheetTitle>
@@ -69,6 +82,7 @@ export default function SiteHeader() {
                       onClick={e => {
                         e.preventDefault();
                         scrollToContactForm();
+                        setIsMenuOpen(false); // Ferme le menu
                       }}
                     >
                       {link.label}
@@ -77,6 +91,7 @@ export default function SiteHeader() {
                       key={link.href}
                       href={link.href}
                       className="text-lg font-semibold hover:text-primary"
+                      onClick={() => setIsMenuOpen(false)} // Ferme le menu sur tous les liens
                     >
                       {link.label}
                     </a>
