@@ -84,41 +84,30 @@ export default function SiteHeader() {
               </SheetTitle>
             <div className="flex flex-col gap-4 py-6">
               {navLinks.map((link) => (
-                link.href === "#contact"
-                  ? (
-                    <SheetClose asChild key={link.href}>
-                      <a
-                        href={link.href}
-                        className="text-lg font-semibold hover:text-primary"
-                        onClick={e => {
-                          e.preventDefault();
-                          scrollToContactForm();
-                        }}
-                      >
-                        {link.label}
-                      </a>
-                    </SheetClose>
-                  )
-                  : (
-                    <SheetClose asChild key={link.href}>
-                      <a
-                        href={link.href}
-                        className="text-lg font-semibold hover:text-primary"
-                        onClick={e => {
-                          e.preventDefault();
-                          const target = document.querySelector(link.href);
-                          const header = document.querySelector("header.sticky");
-                          if (target) {
-                            const headerHeight = header ? header.getBoundingClientRect().height : 0;
-                            const y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
-                            window.scrollTo({ top: y, behavior: "smooth" });
-                          }
-                        }}
-                      >
-                        {link.label}
-                      </a>
-                    </SheetClose>
-                  )
+                <SheetClose asChild key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-lg font-semibold hover:text-primary"
+                    onClick={e => {
+                      e.preventDefault();
+                      setIsMenuOpen(false);
+                      // Réactive le scroll du body (sécurité)
+                      document.body.style.removeProperty('overflow');
+                      if (link.href === "#contact") {
+                        scrollToContactForm();
+                        return;
+                      }
+                      const target = document.querySelector(link.href);
+                      if (target) {
+                        // Offset sticky navbar (100px)
+                        const y = target.getBoundingClientRect().top + window.scrollY - 100;
+                        window.scrollTo({ top: y, behavior: "smooth" });
+                      }
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                </SheetClose>
               ))}
             </div>
           </SheetContent>
