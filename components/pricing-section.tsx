@@ -9,7 +9,7 @@ export function PricingSection({ onSelectPack }: { onSelectPack?: (packId: strin
     {
       id: "Pack Essentiel",
       name: "Pack Essentiel",
-      price: "250€",
+      price: "390€",
       description: "Idéal pour démarrer simplement",
       features: [
         "Site vitrine professionnel (Accueil + Contact)",
@@ -21,7 +21,7 @@ export function PricingSection({ onSelectPack }: { onSelectPack?: (packId: strin
     {
       id: "Pack Complet",
       name: "Pack Complet",
-      price: "390€",
+      price: "490€",
       description: "Parfait pour automatiser et gagner du temps",
       features: [
         "Toutes les options du Pack Essentiel",
