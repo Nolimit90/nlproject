@@ -1,14 +1,15 @@
 "use client"
 
 import Link from "next/link"
-import { Mountain, Menu } from "lucide-react"
+import { Mountain, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet"
 import { usePathname } from "next/navigation"
 import { scrollToContactForm } from "@/components/contact-form-section"
 import React from "react"
 
 export default function SiteHeader() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+
   const navLinks = [
     { href: "#hero", label: "Accueil" },
     { href: "#services", label: "Services" },
@@ -17,23 +18,44 @@ export default function SiteHeader() {
     { href: "#contact", label: "Contact" },
   ]
 
-  const handleNavClick = React.useCallback((href: string) => {
-    // Petit délai pour laisser le menu se fermer sur mobile
-    setTimeout(() => {
-      if (href === "#contact") {
-        scrollToContactForm();
-        return;
+  const handleNavClick = (href: string) => {
+    setIsMenuOpen(false)
+    
+    if (href === "#contact") {
+      scrollToContactForm()
+      return
+    }
+    
+    const target = document.querySelector(href)
+    const header = document.querySelector("header.sticky")
+    if (target) {
+      const headerHeight = header ? header.getBoundingClientRect().height : 0
+      const y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16
+      window.scrollTo({ top: y, behavior: "smooth" })
+    }
+  }
+
+  // Fermer le menu si on clique en dehors
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element
+      if (isMenuOpen && !target.closest('.mobile-menu') && !target.closest('.menu-button')) {
+        setIsMenuOpen(false)
       }
-      
-      const target = document.querySelector(href);
-      const header = document.querySelector("header.sticky");
-      if (target) {
-        const headerHeight = header ? header.getBoundingClientRect().height : 0;
-        const y = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16;
-        window.scrollTo({ top: y, behavior: "smooth" });
-      }
-    }, 100);
-  }, [])
+    }
+
+    if (isMenuOpen) {
+      document.addEventListener('click', handleClickOutside)
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+      document.body.style.overflow = ''
+    }
+  }, [isMenuOpen])
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -43,6 +65,8 @@ export default function SiteHeader() {
           <span className="sr-only">NL Project</span>
           <span>NL Project</span>
         </Link>
+        
+        {/* Navigation desktop */}
         <nav className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
             <a
@@ -50,46 +74,69 @@ export default function SiteHeader() {
               href={link.href}
               className="text-sm font-medium transition-colors hover:text-primary"
               onClick={e => {
-                e.preventDefault();
-                handleNavClick(link.href);
+                e.preventDefault()
+                handleNavClick(link.href)
               }}
             >
               {link.label}
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-2 lg:hidden">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="lg:hidden">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle navigation menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-[280px] sm:w-[350px]">
-              <SheetTitle>
-                <span className="sr-only">Menu principal</span>
-              </SheetTitle>
-              <div className="flex flex-col gap-4 py-6">
-                {navLinks.map((link) => (
-                  <SheetClose asChild key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-lg font-semibold hover:text-primary transition-colors py-2"
-                      onClick={e => {
-                        e.preventDefault();
-                        handleNavClick(link.href);
-                      }}
-                    >
-                      {link.label}
-                    </a>
-                  </SheetClose>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
+
+        {/* Bouton menu mobile */}
+        <div className="lg:hidden">
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            className="menu-button"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <span className="sr-only">Toggle navigation menu</span>
+          </Button>
         </div>
       </div>
+
+      {/* Menu mobile overlay */}
+      {isMenuOpen && (
+        <div className="mobile-menu fixed inset-0 z-50 lg:hidden">
+          {/* Overlay sombre */}
+          <div 
+            className="absolute inset-0 bg-black/50"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          
+          {/* Menu latéral */}
+          <div className="absolute right-0 top-0 h-full w-80 bg-background shadow-xl">
+            <div className="flex h-16 items-center justify-between px-6 border-b">
+              <span className="font-semibold">Menu</span>
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+            
+            <nav className="flex flex-col p-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="py-4 text-lg font-medium border-b border-border/50 last:border-b-0 hover:text-primary transition-colors"
+                  onClick={e => {
+                    e.preventDefault()
+                    handleNavClick(link.href)
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
