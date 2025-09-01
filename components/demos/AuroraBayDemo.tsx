@@ -13,6 +13,7 @@ export default function AuroraBayDemo() {
   const [roomType, setRoomType] = useState('deluxe');
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [videosLoaded, setVideosLoaded] = useState(false);
 
   // Calcul du prix par nuit selon le type de chambre
   const getRoomPrice = (type: string) => {
@@ -60,9 +61,9 @@ export default function AuroraBayDemo() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Optimisation du chargement des images
+  // Optimisation du chargement des images et vidéos
   useEffect(() => {
-    const preloadImages = async () => {
+    const preloadAssets = async () => {
       const imageUrls = [
         '/aurora-bay/optimized/hero-1920w.webp',
         '/aurora-bay/optimized/SPA2-1920w.webp',
@@ -71,7 +72,13 @@ export default function AuroraBayDemo() {
         '/aurora-bay/optimized/restaurant-1920w.webp'
       ];
 
+      const videoUrls = [
+        '/VIDEO/ultra-optimized/LUXURY1.mp4',
+        '/VIDEO/ultra-optimized/LUXURY3.mp4'
+      ];
+
       try {
+        // Précharger les images
         await Promise.all(
           imageUrls.map(url => {
             return new Promise((resolve, reject) => {
@@ -83,17 +90,32 @@ export default function AuroraBayDemo() {
           })
         );
         setImagesLoaded(true);
+
+        // Précharger les vidéos
+        await Promise.all(
+          videoUrls.map(url => {
+            return new Promise((resolve, reject) => {
+              const video = document.createElement('video');
+              video.onloadeddata = resolve;
+              video.onerror = reject;
+              video.src = url;
+              video.preload = 'metadata';
+            });
+          })
+        );
+        setVideosLoaded(true);
       } catch (error) {
-        console.warn('Some images failed to preload:', error);
-        setImagesLoaded(true); // Continuer même si certaines images échouent
+        console.warn('Some assets failed to preload:', error);
+        setImagesLoaded(true);
+        setVideosLoaded(true);
       }
     };
 
-    preloadImages();
+    preloadAssets();
   }, []);
 
-  // Afficher un loader pendant le chargement des images
-  if (!imagesLoaded) {
+  // Afficher un loader pendant le chargement des assets
+  if (!imagesLoaded || !videosLoaded) {
     return (
       <div className="min-h-screen bg-[#FAF9F6] flex items-center justify-center">
         <div className="text-center">
@@ -485,7 +507,7 @@ export default function AuroraBayDemo() {
         {/* Fond vidéo plein écran avec boucle parfaite */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-                            src="/VIDEO/optimized/LUXURY1.mp4" 
+            src="/VIDEO/ultra-optimized/LUXURY1.mp4" 
             autoPlay 
             loop 
             muted 
@@ -493,11 +515,11 @@ export default function AuroraBayDemo() {
             className="w-full h-full object-cover hero-video"
             style={{
               objectPosition: 'center center',
-              // Optimisations pour boucle parfaite
               willChange: 'transform',
-              transform: 'scale(1.01)', // Légèrement plus grand pour éviter les bords
+              transform: 'scale(1.01)',
             }}
-            preload="auto"
+            preload="metadata"
+            poster="/aurora-bay/hero.jpg"
             onError={(e) => console.log('Video error:', e)}
             onLoadStart={() => console.log('Video loading started')}
             onCanPlay={() => console.log('Video can play')}
@@ -715,7 +737,7 @@ export default function AuroraBayDemo() {
         {/* Vidéo immersive en arrière-plan */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-                            src="/VIDEO/optimized/LUXURY3.mp4" 
+            src="/VIDEO/ultra-optimized/LUXURY3.mp4" 
             autoPlay 
             loop 
             muted 
@@ -726,7 +748,8 @@ export default function AuroraBayDemo() {
               willChange: 'transform',
               transform: 'scale(1.02)',
             }}
-            preload="auto"
+            preload="metadata"
+            poster="/aurora-bay/hero.jpg"
             onError={(e) => console.log('Video LUXURY3 error:', e)}
             onLoadStart={() => console.log('Video LUXURY3 loading started')}
             onCanPlay={() => console.log('Video LUXURY3 can play')}
