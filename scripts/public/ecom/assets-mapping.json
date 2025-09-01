@@ -1,0 +1,56 @@
+{
+  "images": {
+    "sneaker-01.jpg": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800&h=800&fit=crop&crop=center",
+    "sneaker-02.jpg": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&h=800&fit=crop&crop=center",
+    "sneaker-03.jpg": "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=800&h=800&fit=crop&crop=center",
+    "sneaker-04.jpg": "https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=800&h=800&fit=crop&crop=center",
+    "tshirt-01.jpg": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&h=800&fit=crop&crop=center",
+    "shorts-01.jpg": "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=800&fit=crop&crop=center",
+    "cap-01.jpg": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop&crop=center",
+    "jacket-01.jpg": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&h=800&fit=crop&crop=center",
+    "hoodie-01.jpg": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&h=800&fit=crop&crop=center",
+    "pants-01.jpg": "https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=800&h=800&fit=crop&crop=center",
+    "bag-01.jpg": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop&crop=center",
+    "watch-01.jpg": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=800&h=800&fit=crop&crop=center",
+    "socks-01.jpg": "https://images.unsplash.com/photo-1586350977771-b3d0a6c0c0c0?w=800&h=800&fit=crop&crop=center",
+    "gloves-01.jpg": "https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=800&h=800&fit=crop&crop=center",
+    "scarf-01.jpg": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=800&h=800&fit=crop&crop=center",
+    "belt-01.jpg": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=800&fit=crop&crop=center",
+    "sunglasses-01.jpg": "https://images.unsplash.com/photo-1572635196237-14b3f2812f0d?w=800&h=800&fit=crop&crop=center",
+    "jewelry-01.jpg": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce3b1?w=800&h=800&fit=crop&crop=center",
+    "perfume-01.jpg": "https://images.unsplash.com/photo-1541643600914-78b084683601?w=800&h=800&fit=crop&crop=center",
+    "skincare-01.jpg": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&h=800&fit=crop&crop=center"
+  },
+  "videos": {
+    "running-collection.mp4": "https://player.vimeo.com/external/123456789.sd.mp4?s=abc123&profile_id=165&oauth2_token_id=123456789",
+    "streetwear-collection.mp4": "https://player.vimeo.com/external/123456790.sd.mp4?s=def456&profile_id=165&oauth2_token_id=123456789",
+    "training-collection.mp4": "https://player.vimeo.com/external/123456791.sd.mp4?s=ghi789&profile_id=165&oauth2_token_id=123456789",
+    "lifestyle-collection.mp4": "https://player.vimeo.com/external/123456792.sd.mp4?s=jkl012&profile_id=165&oauth2_token_id=123456789",
+    "sport-collection.mp4": "https://player.vimeo.com/external/123456793.sd.mp4?s=mno345&profile_id=165&oauth2_token_id=123456789",
+    "casual-collection.mp4": "https://player.vimeo.com/external/123456794.sd.mp4?s=pqr678&profile_id=165&oauth2_token_id=123456789",
+    "premium-collection.mp4": "https://player.vimeo.com/external/123456795.sd.mp4?s=stu901&profile_id=165&oauth2_token_id=123456789",
+    "limited-collection.mp4": "https://player.vimeo.com/external/123456796.sd.mp4?s=vwx234&profile_id=165&oauth2_token_id=123456789"
+  },
+  "hero": {
+    "hero-bg.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop&crop=center",
+    "hero-overlay.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop&crop=center",
+    "banner-sale.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop&crop=center",
+    "banner-new.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop&crop=center",
+    "banner-sport.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1200&h=400&fit=crop&crop=center"
+  },
+  "categories": {
+    "category-men.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=800&fit=crop&crop=center",
+    "category-women.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=800&fit=crop&crop=center",
+    "category-kids.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=800&fit=crop&crop=center",
+    "category-sport.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=800&fit=crop&crop=center",
+    "category-accessories.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=800&fit=crop&crop=center"
+  },
+  "lifestyle": {
+    "lookbook-01.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=1200&fit=crop&crop=center",
+    "lookbook-02.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=1200&fit=crop&crop=center",
+    "lookbook-03.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=1200&fit=crop&crop=center",
+    "lifestyle-01.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&crop=center",
+    "lifestyle-02.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&crop=center",
+    "lifestyle-03.jpg": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&h=600&fit=crop&crop=center"
+  }
+}

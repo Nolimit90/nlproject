@@ -1,12 +1,28 @@
 "use client";
 
-export function SiteFooter() {
+export default function SiteFooter() {
   return (
-    <footer className="w-full border-t py-6">
-      <div className="container flex flex-col items-center justify-center gap-2 px-4 text-center text-sm text-muted-foreground md:flex-row md:justify-between md:px-6">
-        <p>
-          &copy; 2024 NL Project. Tous droits réservés.
-        </p>
+    <footer className="bg-white border-t border-gray-100 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          {/* Copyright centré */}
+          <p className="text-sm font-michelle-regular text-gray-600 mb-4">
+            © 2025 NL Project. Tous droits réservés.
+          </p>
+          
+          {/* Liens légaux discrets */}
+          <div className="flex justify-center space-x-6 text-xs text-gray-500">
+            <a href="#" className="hover:text-gray-700 transition-colors font-michelle-regular">
+              Mentions légales
+            </a>
+            <a href="#" className="hover:text-gray-700 transition-colors font-michelle-regular">
+              Politique de confidentialité
+            </a>
+            <a href="#" className="hover:text-gray-700 transition-colors font-michelle-regular">
+              CGV
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

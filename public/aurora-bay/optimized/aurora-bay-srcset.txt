@@ -1,0 +1,5 @@
+hero: /aurora-bay/optimized/hero-640w.webp 640w, /aurora-bay/optimized/hero-1024w.webp 1024w, /aurora-bay/optimized/hero-1920w.webp 1920w
+SPA2: /aurora-bay/optimized/SPA2-640w.webp 640w, /aurora-bay/optimized/SPA2-1024w.webp 1024w, /aurora-bay/optimized/SPA2-1920w.webp 1920w
+KITCHENOUT: /aurora-bay/optimized/KITCHENOUT-640w.webp 640w, /aurora-bay/optimized/KITCHENOUT-1024w.webp 1024w, /aurora-bay/optimized/KITCHENOUT-1920w.webp 1920w
+deluxe-room: /aurora-bay/optimized/deluxe-room-640w.webp 640w, /aurora-bay/optimized/deluxe-room-1024w.webp 1024w, /aurora-bay/optimized/deluxe-room-1920w.webp 1920w
+restaurant: /aurora-bay/optimized/restaurant-640w.webp 640w, /aurora-bay/optimized/restaurant-1024w.webp 1024w, /aurora-bay/optimized/restaurant-1920w.webp 1920w

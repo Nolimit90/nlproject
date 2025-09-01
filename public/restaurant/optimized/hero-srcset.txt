@@ -1,0 +1,1 @@
+hero-640w.webp 640w, hero-1024w.webp 1024w, hero-1920w.webp 1920w

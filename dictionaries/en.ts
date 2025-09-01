@@ -1,81 +1,107 @@
-const en = {
+export const en = {
+  // Header
+  nav: {
+    demos: "Demos",
+    why: "Why",
+    about: "About",
+    contact: "Contact",
+    startProject: "Start a project"
+  },
+  
+  // Hero Section
   hero: {
-    title: "Clear, fast, profitable websites.",
-    description: "NL Project creates professional websites that captivate your audience and drive your growth. Simplicity, performance, and guaranteed ROI."
+    title: "Websites that win customers",
+    subtitle: "Modern websites. Built fast. Built to convert.",
+    viewDemos: "View demos",
+    contactMe: "Contact me"
   },
-  whatIOffer: {
-    title: "What I Offer",
-    items: [
-      "Showcase website creation",
-      "Website redesign",
-      "SEO optimization",
-      "Personalized digital consulting"
-    ]
+  
+  // Demos Section
+  demos: {
+    title: "Works",
+    subtitle: "Browse through my latest projects and see how I transform ideas into converting websites.",
+    restaurant: {
+      title: "Gastronomic Restaurant",
+      description: "Elegant website for high-end restaurant",
+      features: [
+        "Clean and modern design",
+        "Intuitive navigation",
+        "Responsive layout"
+      ]
+    },
+    ecommerce: {
+      title: "Premium E-commerce",
+      description: "Online store with creative design",
+      features: [
+        "Modern user interface",
+        "Advanced cart system",
+        "Conversion optimized"
+      ]
+    },
+    corporate: {
+      title: "Corporate Site",
+      description: "Professional website for business",
+      features: [
+        "Professional design",
+        "Well-structured sections",
+        "Performance optimized"
+      ]
+    },
+    viewDemo: "View demo",
+    details: "Details"
   },
-  pricing: {
-    title: "Our Pricing",
-    packs: [
-      {
-        id: "essential",
-        name: "Essential Pack",
-        price: "$270",
-        description: "Ideal to get started simply",
-        features: [
-          "Professional showcase website (Home + Contact)",
-          "Personalized QR code",
-          "Fast responsive design",
-          "Quick and efficient setup"
-        ]
-      },
-      {
-        id: "complete",
-        name: "Complete Pack",
-        price: "$420",
-        description: "Perfect to automate and save time",
-        features: [
-          "All features of the Essential Pack",
-          "Order or booking system",
-          "Client notification",
-          "Simple interface for merchant or employee"
-        ]
-      },
-      {
-        id: "custom",
-        name: "Custom Pack",
-        price: "On quote",
-        description: "For large structures or complex projects",
-        features: [
-          "Multi-page website",
-          "Specific features",
-          "Custom design",
-          "Strategic support"
-        ]
-      }
-    ]
+  
+  // Benefits Section
+  benefits: {
+    title: "Why choose me",
+    mobile: {
+      title: "Mobile-first & responsive",
+      description: "Every website is built mobile-first, ensuring perfect performance across all devices."
+    },
+    design: {
+      title: "Unique & modern design",
+      description: "Custom designs that reflect your brand identity and stand out from the competition."
+    },
+    conversion: {
+      title: "Conversion-focused & SEO-friendly",
+      description: "Strategic layouts and optimized code that drive conversions and rank well in search."
+    }
   },
-  whyMe: {
-    title: "Why choose NL Project?",
-    description: "I am committed to creating websites that are not only beautiful and high-performing, but above all meet your business goals. My approach is focused on simplicity, efficiency, and personalized support for each client. With NL Project, you benefit from expertise dedicated to the success of your online presence."
+  
+  // About Section
+  about: {
+    title: "About / Process",
+    description: "I'm Chris Henock, a developer in Paris. I blend clean design with marketing sense to build sites that turn visitors into customers.",
+    additional: "I create clear, fast websites that focus on conversion and user experience. Every project is crafted with attention to detail and performance.",
+    availability: {
+      title: "Limited Availability",
+      message: "Only 2 slots available this month"
+    }
   },
-  form: {
-    title: "Ready to boost your online presence?",
-    subtitle: "Fill out the form below and I’ll get back to you within 24 hours!",
-    full_name_label: "Full name",
-    full_name_placeholder: "Your full name",
-    email_label: "Email",
-    email_placeholder: "Your email",
-    phone_label: "Phone",
-    phone_placeholder: "Your phone (optional)",
-    pack_label: "Pack",
-    pack_placeholder: "Choose a pack",
-    message_label: "Message",
-    message_placeholder: "Describe your project or ask your questions",
-    submit: "Send",
-    sending: "Sending..."
+  
+  // Contact Section
+  contact: {
+    title: "Let's work together",
+    subtitle: "Ready to transform your online presence? Let's discuss your project and create something amazing.",
+    startProject: "Start a project",
+    emailMe: "Email me",
+    reassurance: "Replies within 24h. Let's make something great together."
   },
-  thankYou: {
-    title: "Thank you for your message!",
-    description: "I will get back to you as soon as possible. See you soon!"
+  
+  // Footer
+  footer: {
+    branding: "NL Project - Clear. Fast. Impactful.",
+    copyright: "© 2024 NL Project. All rights reserved."
+  },
+  
+  // Mobile Menu
+  mobileMenu: {
+    responseTime: "Response within 24h"
+  },
+  
+  // Language
+  language: {
+    en: "EN",
+    fr: "FR"
   }
-};
-export default en; 
+}; 

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { HeroSection } from "@/components/hero-section"
+import { HeroSection, ShowcaseSection } from "@/components/hero-section"
 import { WhatIOfferSection } from "@/components/what-i-offer-section"
 import { PricingSection } from "@/components/pricing-section"
 import { WhyMeSection } from "@/components/why-me-section"
@@ -19,6 +19,7 @@ function ClientPageContent() {
   return (
     <>
       <HeroSection />
+      <ShowcaseSection />
       <WhatIOfferSection />
       <PricingSection onSelectPack={handleSelectPack} />
       <WhyMeSection />

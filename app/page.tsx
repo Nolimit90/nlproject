@@ -1,18 +1,17 @@
-'use client';
-import SiteHeader from '@/components/site-header';
-import { SiteFooter } from '@/components/site-footer';
-import ClientPageContent from '@/components/client-page-content';
-import ScrollToTop from '@/components/ScrollToTop';
+import Hero from '@/components/Hero';
+import Demos from '@/components/Demos';
+import Benefits from '@/components/Benefits';
+import About from '@/components/About';
+import Contact from '@/components/Contact';
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-[100dvh] flex-col">
-      <ScrollToTop />
-      <SiteHeader />
-      <main className="flex-1">
-        <ClientPageContent />
-      </main>
-      <SiteFooter />
-    </div>
+    <>
+      <Hero />
+      <Demos />
+      <Benefits />
+      <About />
+      <Contact />
+    </>
   );
 } 

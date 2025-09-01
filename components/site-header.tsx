@@ -1,5 +1,6 @@
-"use client"
+"use client";
 
+<<<<<<< Updated upstream
 import Link from "next/link"
 import { Mountain, Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -94,7 +95,75 @@ export default function SiteHeader() {
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
+=======
+import Link from "next/link";
+import { useState } from "react";
+
+export default function SiteHeader() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo "NL Project" à gauche */}
+          <Link href="/" className="text-xl font-michelle-bold text-gray-900">
+            NL Project
+          </Link>
+
+          {/* Menu centré en Michelle Gore Medium */}
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors font-michelle-medium">
+              Accueil
+            </Link>
+            <Link href="/#services" className="text-gray-700 hover:text-gray-900 transition-colors font-michelle-medium">
+              Services
+            </Link>
+            <Link href="/#tarifs" className="text-gray-700 hover:text-gray-900 transition-colors font-michelle-medium">
+              Tarifs
+            </Link>
+            <Link href="/#whyme" className="text-gray-700 hover:text-gray-900 transition-colors font-michelle-medium">
+              Pourquoi moi ?
+            </Link>
+            <Link href="/#contact" className="text-gray-700 hover:text-gray-900 transition-colors font-michelle-medium">
+              Contact
+            </Link>
+          </nav>
+
+          {/* Bouton menu mobile */}
+          <button
+            className="md:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+>>>>>>> Stashed changes
         </div>
+
+        {/* Menu mobile avec typographie Michelle Gore */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-gray-100">
+            <div className="flex flex-col space-y-3">
+              <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors py-2 font-michelle-medium focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                Accueil
+              </Link>
+              <Link href="/#services" className="text-gray-700 hover:text-gray-900 transition-colors py-2 font-michelle-medium focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                Services
+              </Link>
+              <Link href="/#tarifs" className="text-gray-700 hover:text-gray-900 transition-colors py-2 font-michelle-medium focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                Tarifs
+              </Link>
+              <Link href="/#whyme" className="text-gray-700 hover:text-gray-900 transition-colors py-2 font-michelle-medium focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                Pourquoi moi ?
+              </Link>
+              <Link href="/#contact" className="text-gray-700 hover:text-gray-900 transition-colors py-2 font-michelle-medium focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                Contact
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Menu mobile overlay */}
@@ -138,5 +207,5 @@ export default function SiteHeader() {
         </div>
       )}
     </header>
-  )
+  );
 }
