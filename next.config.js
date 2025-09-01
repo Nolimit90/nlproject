@@ -29,7 +29,7 @@ const nextConfig = {
   
   // Optimisations de performance
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
     optimizePackageImports: ['lucide-react']
   },
   
