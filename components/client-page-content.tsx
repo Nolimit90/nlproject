@@ -5,7 +5,7 @@ import { HeroSection, ShowcaseSection } from "@/components/hero-section"
 import { WhatIOfferSection } from "@/components/what-i-offer-section"
 import { PricingSection } from "@/components/pricing-section"
 import { WhyMeSection } from "@/components/why-me-section"
-import { ContactForm, scrollToContactForm } from "@/components/contact-form-section"
+import ContactFormSection, { scrollToContactForm } from "@/components/contact-form-section"
 
 function ClientPageContent() {
   const [preSelectedPack, setPreSelectedPack] = useState<string | null>(null)
@@ -23,7 +23,7 @@ function ClientPageContent() {
       <WhatIOfferSection />
       <PricingSection onSelectPack={handleSelectPack} />
       <WhyMeSection />
-      <ContactForm preSelectedPack={preSelectedPack} />
+      <ContactFormSection preSelectedPack={preSelectedPack} />
     </>
   )
 }

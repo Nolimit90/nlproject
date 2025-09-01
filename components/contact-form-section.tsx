@@ -22,13 +22,17 @@ interface FormErrors {
   [key: string]: string;
 }
 
-export default function ContactFormSection() {
+interface ContactFormSectionProps {
+  preSelectedPack?: string | null;
+}
+
+export default function ContactFormSection({ preSelectedPack }: ContactFormSectionProps) {
   const [formData, setFormData] = useState<ContactFormData>({
     firstName: '',
     lastName: '',
     email: '',
     telephone: '',
-    pack: '',
+    pack: preSelectedPack || '',
     message: ''
   });
 
@@ -392,4 +396,15 @@ export default function ContactFormSection() {
       </div>
     </section>
   );
+}
+
+// Fonction utilitaire pour faire défiler vers le formulaire
+export function scrollToContactForm() {
+  const contactSection = document.getElementById('contact-form');
+  if (contactSection) {
+    contactSection.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start' 
+    });
+  }
 }
