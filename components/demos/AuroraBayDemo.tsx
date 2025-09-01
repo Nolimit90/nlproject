@@ -485,7 +485,7 @@ export default function AuroraBayDemo() {
         {/* Fond vidéo plein écran avec boucle parfaite */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/LUXURY1.mp4" 
+                            src="/VIDEO/optimized/LUXURY1.mp4" 
             autoPlay 
             loop 
             muted 
@@ -628,7 +628,7 @@ export default function AuroraBayDemo() {
         {/* Vidéo immersive en arrière-plan */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/LUXURY2.mp4" 
+                            src="/VIDEO/optimized/LUXURY2.mp4" 
             autoPlay 
             loop 
             muted 
@@ -715,7 +715,7 @@ export default function AuroraBayDemo() {
         {/* Vidéo immersive en arrière-plan */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/LUXURY3.mp4" 
+                            src="/VIDEO/optimized/LUXURY3.mp4" 
             autoPlay 
             loop 
             muted 

@@ -1,28 +1,12 @@
 'use client';
 
-import { Github, Linkedin, Twitter } from 'lucide-react';
 import { useI18n } from '@/hooks/useI18n';
 
 export default function About() {
   const { lang } = useI18n();
 
-  const socialLinks = [
-    {
-      name: 'GitHub',
-      url: 'https://github.com',
-      icon: Github
-    },
-    {
-      name: 'LinkedIn',
-      url: 'https://linkedin.com',
-      icon: Linkedin
-    },
-    {
-      name: 'Twitter',
-      url: 'https://twitter.com',
-      icon: Twitter
-    }
-  ];
+  // Social links removed for now
+  const socialLinks = [];
 
   return (
     <section id="about" className="py-24 bg-white">
