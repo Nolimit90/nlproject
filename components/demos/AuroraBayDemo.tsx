@@ -618,7 +618,7 @@ export default function AuroraBayDemo() {
         {/* Vidéo immersive en arrière-plan */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-                            src="/VIDEO/aurora-luxury2.mp4" 
+                            src="/VIDEO/aurora-luxury-redefined.mp4" 
             autoPlay 
             loop 
             muted 
@@ -705,7 +705,7 @@ export default function AuroraBayDemo() {
         {/* Vidéo immersive en arrière-plan */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/aurora-luxury3.mp4" 
+            src="/VIDEO/aurora-timeless.mp4" 
             autoPlay 
             loop 
             muted 
@@ -716,7 +716,7 @@ export default function AuroraBayDemo() {
               willChange: 'transform',
               transform: 'scale(1.02)',
             }}
-            preload="none"
+            preload="auto"
             onError={(e) => console.log('Video LUXURY3 error:', e)}
             onLoadStart={() => console.log('Video LUXURY3 loading started')}
             onCanPlay={() => console.log('Video LUXURY3 can play')}
