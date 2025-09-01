@@ -712,26 +712,17 @@ export default function AuroraBayDemo() {
 
       {/* E. Section vidéo immersive LUXURY3 - NOUVELLE SECTION */}
       <section className="relative py-32 sm:py-36 md:py-40 lg:py-44 xl:py-48 overflow-hidden">
-        {/* Vidéo immersive en arrière-plan */}
+        {/* Image de fond temporaire pour performance */}
         <div className="absolute inset-0 w-full h-full">
-          <video 
-            src="/VIDEO/LUXURY3.mp4" 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover background-video"
+          <img 
+            src="/aurora-bay/aurora-poster.jpg" 
+            alt="Aurora Bay Luxury Experience"
+            className="w-full h-full object-cover"
             style={{
               objectPosition: 'center center',
               willChange: 'transform',
               transform: 'scale(1.02)',
             }}
-            preload="none"
-            onError={(e) => console.log('Video LUXURY3 error:', e)}
-            onLoadStart={() => console.log('Video LUXURY3 loading started')}
-            onCanPlay={() => console.log('Video LUXURY3 can play')}
-            onEnded={() => console.log('Video LUXURY3 ended, looping...')}
-            onSeeked={() => console.log('Video LUXURY3 seeked')}
           />
           {/* Overlay élégant pour la lisibilité */}
           <div className="absolute inset-0 bg-black/35"></div>
