@@ -485,7 +485,7 @@ export default function AuroraBayDemo() {
         {/* Fond vidéo plein écran avec boucle parfaite */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/LUXURY1.mp4" 
+            src="/VIDEO/hero-light.mp4" 
             autoPlay 
             loop 
             muted 
@@ -496,7 +496,8 @@ export default function AuroraBayDemo() {
               willChange: 'transform',
               transform: 'scale(1.01)',
             }}
-            preload="none"
+            preload="metadata"
+            poster="/aurora-bay/hero-poster.jpg"
             onError={(e) => console.log('Video error:', e)}
             onLoadStart={() => console.log('Video loading started')}
             onCanPlay={() => console.log('Video can play')}
