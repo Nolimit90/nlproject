@@ -92,17 +92,7 @@ export default function AuroraBayDemo() {
     preloadImages();
   }, []);
 
-  // Afficher un loader pendant le chargement des images
-  if (!imagesLoaded) {
-    return (
-      <div className="min-h-screen bg-[#FAF9F6] flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-[#7C8C6B] mx-auto mb-4"></div>
-          <p className="text-[#7C8C6B] font-light">Loading Aurora Bay...</p>
-        </div>
-      </div>
-    );
-  }
+  // Pas de loader bloquant - chargement direct
 
   return (
     <div className="min-h-screen bg-[#FAF9F6] font-['Playfair_Display']">
