@@ -485,7 +485,7 @@ export default function AuroraBayDemo() {
         {/* Fond vidéo plein écran avec boucle parfaite */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/hero-light.mp4" 
+            src="/VIDEO/hero-mobile.mp4" 
             autoPlay 
             loop 
             muted 
