@@ -13,7 +13,6 @@ export default function AuroraBayDemo() {
   const [roomType, setRoomType] = useState('deluxe');
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
-  const [videosLoaded, setVideosLoaded] = useState(false);
 
   // Calcul du prix par nuit selon le type de chambre
   const getRoomPrice = (type: string) => {
@@ -61,9 +60,9 @@ export default function AuroraBayDemo() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Optimisation du chargement des images et vidéos
+  // Optimisation du chargement des images uniquement
   useEffect(() => {
-    const preloadAssets = async () => {
+    const preloadImages = async () => {
       const imageUrls = [
         '/aurora-bay/optimized/hero-1920w.webp',
         '/aurora-bay/optimized/SPA2-1920w.webp',
@@ -72,13 +71,7 @@ export default function AuroraBayDemo() {
         '/aurora-bay/optimized/restaurant-1920w.webp'
       ];
 
-      const videoUrls = [
-        '/VIDEO/ultra-optimized/LUXURY1.mp4',
-        '/VIDEO/ultra-optimized/LUXURY3.mp4'
-      ];
-
       try {
-        // Précharger les images
         await Promise.all(
           imageUrls.map(url => {
             return new Promise((resolve, reject) => {
@@ -90,32 +83,17 @@ export default function AuroraBayDemo() {
           })
         );
         setImagesLoaded(true);
-
-        // Précharger les vidéos
-        await Promise.all(
-          videoUrls.map(url => {
-            return new Promise((resolve, reject) => {
-              const video = document.createElement('video');
-              video.onloadeddata = resolve;
-              video.onerror = reject;
-              video.src = url;
-              video.preload = 'metadata';
-            });
-          })
-        );
-        setVideosLoaded(true);
       } catch (error) {
-        console.warn('Some assets failed to preload:', error);
+        console.warn('Some images failed to preload:', error);
         setImagesLoaded(true);
-        setVideosLoaded(true);
       }
     };
 
-    preloadAssets();
+    preloadImages();
   }, []);
 
-  // Afficher un loader pendant le chargement des assets
-  if (!imagesLoaded || !videosLoaded) {
+  // Afficher un loader pendant le chargement des images
+  if (!imagesLoaded) {
     return (
       <div className="min-h-screen bg-[#FAF9F6] flex items-center justify-center">
         <div className="text-center">
@@ -507,7 +485,7 @@ export default function AuroraBayDemo() {
         {/* Fond vidéo plein écran avec boucle parfaite */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/ultra-optimized/LUXURY1.mp4" 
+            src="/VIDEO/LUXURY1.mp4" 
             autoPlay 
             loop 
             muted 
@@ -518,8 +496,7 @@ export default function AuroraBayDemo() {
               willChange: 'transform',
               transform: 'scale(1.01)',
             }}
-            preload="metadata"
-            poster="/aurora-bay/hero.jpg"
+            preload="none"
             onError={(e) => console.log('Video error:', e)}
             onLoadStart={() => console.log('Video loading started')}
             onCanPlay={() => console.log('Video can play')}
@@ -737,7 +714,7 @@ export default function AuroraBayDemo() {
         {/* Vidéo immersive en arrière-plan */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/ultra-optimized/LUXURY3.mp4" 
+            src="/VIDEO/LUXURY3.mp4" 
             autoPlay 
             loop 
             muted 
@@ -748,8 +725,7 @@ export default function AuroraBayDemo() {
               willChange: 'transform',
               transform: 'scale(1.02)',
             }}
-            preload="metadata"
-            poster="/aurora-bay/hero.jpg"
+            preload="none"
             onError={(e) => console.log('Video LUXURY3 error:', e)}
             onLoadStart={() => console.log('Video LUXURY3 loading started')}
             onCanPlay={() => console.log('Video LUXURY3 can play')}
