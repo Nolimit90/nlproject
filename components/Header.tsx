@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import AvailabilityPill from './AvailabilityIndicator';
 import MobileMenu from './MobileMenu';
@@ -60,9 +61,16 @@ export default function Header() {
             <div className="flex items-center">
               <Link 
                 href="/" 
-                className="text-xl font-bold text-[#1A1A1A] hover:text-[#2D5A27] transition-colors duration-150"
+                className="flex items-center hover:opacity-80 transition-opacity duration-150"
               >
-                NL Project
+                <Image 
+                  src="/logo-nl-project.png" 
+                  alt="NL Project" 
+                  width={120} 
+                  height={40}
+                  priority
+                  className="h-10 w-auto"
+                />
               </Link>
             </div>
 
@@ -106,8 +114,15 @@ export default function Header() {
           <div className="lg:hidden">
             <div className="flex items-center justify-between h-14">
               {/* Gauche - Logo */}
-              <Link href="/" className="text-lg font-bold text-[#1A1A1A]">
-                NL Project
+              <Link href="/" className="flex items-center">
+                <Image 
+                  src="/logo-nl-project.png" 
+                  alt="NL Project" 
+                  width={100} 
+                  height={33}
+                  priority
+                  className="h-8 w-auto"
+                />
               </Link>
               
               {/* Droite - Bouton de langue + Menu */}
