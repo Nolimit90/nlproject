@@ -9,6 +9,7 @@ export default function Contact() {
     firstName: '',
     lastName: '',
     email: '',
+    countryCode: '+33', // 🌍 Indicatif pays par défaut (France)
     telephone: '',
     clientType: '',
     pack: '',
@@ -70,11 +71,17 @@ export default function Contact() {
     setIsSubmitting(true);
     
     try {
+      // 🌍 Combiner l'indicatif pays et le numéro de téléphone
+      const fullPhoneNumber = formData.telephone 
+        ? `${formData.countryCode} ${formData.telephone}` 
+        : '';
+      
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          telephone: fullPhoneNumber, // Numéro complet avec indicatif
           lang: lang // Ajouter la langue
         }),
       });
@@ -87,6 +94,7 @@ export default function Contact() {
           firstName: '',
           lastName: '',
           email: '',
+          countryCode: '+33',
           telephone: '',
           clientType: '',
           pack: '',
@@ -306,16 +314,44 @@ export default function Contact() {
                   <label htmlFor="telephone" className="block text-sm font-medium text-gray-700">
                     {t.phone}
                   </label>
-                  <input
-                    type="tel"
-                    id="telephone"
-                    name="telephone"
-                    value={formData.telephone}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
-                    placeholder="+33 6 12 34 56 78"
-                    disabled={isSubmitting}
-                  />
+                  <div className="flex gap-2">
+                    {/* Sélecteur d'indicatif pays */}
+                    <select
+                      name="countryCode"
+                      value={formData.countryCode}
+                      onChange={handleInputChange}
+                      className="w-32 px-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white cursor-pointer"
+                      disabled={isSubmitting}
+                    >
+                      <option value="+33">🇫🇷 +33</option>
+                      <option value="+1">🇺🇸 +1</option>
+                      <option value="+44">🇬🇧 +44</option>
+                      <option value="+49">🇩🇪 +49</option>
+                      <option value="+34">🇪🇸 +34</option>
+                      <option value="+39">🇮🇹 +39</option>
+                      <option value="+32">🇧🇪 +32</option>
+                      <option value="+41">🇨🇭 +41</option>
+                      <option value="+351">🇵🇹 +351</option>
+                      <option value="+212">🇲🇦 +212</option>
+                      <option value="+213">🇩🇿 +213</option>
+                      <option value="+216">🇹🇳 +216</option>
+                      <option value="+221">🇸🇳 +221</option>
+                      <option value="+225">🇨🇮 +225</option>
+                      <option value="+237">🇨🇲 +237</option>
+                      <option value="+other">{lang === 'fr' ? '🌍 Autre' : '🌍 Other'}</option>
+                    </select>
+                    {/* Numéro de téléphone */}
+                    <input
+                      type="tel"
+                      id="telephone"
+                      name="telephone"
+                      value={formData.telephone}
+                      onChange={handleInputChange}
+                      className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
+                      placeholder={lang === 'fr' ? '6 12 34 56 78' : '6 12 34 56 78'}
+                      disabled={isSubmitting}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
