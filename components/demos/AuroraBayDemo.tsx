@@ -3,8 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu, X, Calendar, Users, MapPin, Star, ChevronRight, Home, Clock, CreditCard, CheckCircle } from 'lucide-react';
+import { useI18n } from '@/hooks/useI18n';
 
 export default function AuroraBayDemo() {
+  const { lang } = useI18n();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isReservationOpen, setIsReservationOpen] = useState(false);
@@ -111,7 +113,7 @@ export default function AuroraBayDemo() {
                   className="text-[15px] font-medium tracking-[0.12em] text-white hover:text-[#7C8C6B] transition-colors duration-300"
                   style={{ fontVariantCaps: 'all-small-caps' }}
                 >
-                  ENQUIRE NOW
+                  {lang === 'fr' ? 'DEMANDE D\'INFO' : 'ENQUIRE NOW'}
                 </a>
               </div>
               <div className="flex items-center space-x-3">
@@ -121,7 +123,7 @@ export default function AuroraBayDemo() {
                   className="text-[15px] font-medium tracking-[0.12em] text-white hover:text-[#7C8C6B] transition-colors duration-300 cursor-pointer"
                   style={{ fontVariantCaps: 'all-small-caps' }}
                 >
-                  BOOK DIRECTLY
+                  {lang === 'fr' ? 'RÉSERVER' : 'BOOK DIRECTLY'}
                 </button>
               </div>
             </div>
@@ -139,7 +141,7 @@ export default function AuroraBayDemo() {
                 <span className={`text-[15px] font-medium tracking-[0.12em] transition-colors duration-300 ${
                   isScrolled ? 'text-[#2E2E2E]' : 'text-white'
                 }`} style={{ fontVariantCaps: 'all-small-caps' }}>
-                  ROOMS & SUITES
+                  {lang === 'fr' ? 'CHAMBRES & SUITES' : 'ROOMS & SUITES'}
                 </span>
               </div>
               <button
@@ -168,7 +170,7 @@ export default function AuroraBayDemo() {
                   </div>
                   <div>
                     <h2 className="text-lg font-light text-[#2E2E2E]">Aurora Bay</h2>
-                    <p className="text-xs text-[#7C8C6B] font-light">Navigation</p>
+                    <p className="text-xs text-[#7C8C6B] font-light">{lang === 'fr' ? 'Navigation' : 'Navigation'}</p>
                   </div>
                 </div>
                 <button
@@ -206,7 +208,7 @@ export default function AuroraBayDemo() {
                         className="w-full text-left hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center"
                       >
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Our Story
+                        {lang === 'fr' ? 'Notre Histoire' : 'Our Story'}
                       </button>
                       <button 
                         onClick={() => {
@@ -222,7 +224,7 @@ export default function AuroraBayDemo() {
                         className="w-full text-left hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center"
                       >
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Immersive Experiences
+                        {lang === 'fr' ? 'Expériences Immersives' : 'Immersive Experiences'}
                       </button>
                       <button 
                         onClick={() => {
@@ -238,7 +240,7 @@ export default function AuroraBayDemo() {
                         className="w-full text-left hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center"
                       >
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Luxury Services
+                        {lang === 'fr' ? 'Services de Luxe' : 'Luxury Services'}
                       </button>
                     </div>
                   </div>
@@ -246,7 +248,9 @@ export default function AuroraBayDemo() {
                   <div className="group">
                     <div className="flex items-center space-x-3 mb-6">
                       <div className="w-1 h-8 bg-gradient-to-b from-[#7C8C6B] to-[#9BAF8A] rounded-full"></div>
-                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">ACCOMMODATION</h3>
+                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">
+                        {lang === 'fr' ? 'HÉBERGEMENT' : 'ACCOMMODATION'}
+                      </h3>
                     </div>
                     <div className="space-y-4 sm:space-y-5 text-base sm:text-lg text-[#5B6B62] font-light pl-4">
                       <button 
@@ -260,7 +264,7 @@ export default function AuroraBayDemo() {
                         className="w-full text-left hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center"
                       >
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Deluxe Room - €280/night
+                        {lang === 'fr' ? 'Chambre Deluxe - 280€/nuit' : 'Deluxe Room - €280/night'}
                       </button>
                       <button 
                         onClick={() => {
@@ -273,7 +277,7 @@ export default function AuroraBayDemo() {
                         className="w-full text-left hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center"
                       >
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Ocean Suite - €420/night
+                        {lang === 'fr' ? 'Suite Océan - 420€/nuit' : 'Ocean Suite - €420/night'}
                       </button>
                       <button 
                         onClick={() => {
@@ -286,7 +290,7 @@ export default function AuroraBayDemo() {
                         className="w-full text-left hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center"
                       >
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Presidential Villa - €680/night
+                        {lang === 'fr' ? 'Villa Présidentielle - 680€/nuit' : 'Presidential Villa - €680/night'}
                       </button>
                     </div>
                   </div>
@@ -294,7 +298,9 @@ export default function AuroraBayDemo() {
                   <div className="group">
                     <div className="flex items-center space-x-3 mb-6">
                       <div className="w-1 h-8 bg-gradient-to-b from-[#7C8C6B] to-[#9BAF8A] rounded-full"></div>
-                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">WELLNESS</h3>
+                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">
+                        {lang === 'fr' ? 'BIEN-ÊTRE' : 'WELLNESS'}
+                      </h3>
                     </div>
                     <div className="space-y-4 sm:space-y-5 text-base sm:text-lg text-[#5B6B62] font-light pl-4">
                       <button 
@@ -311,7 +317,7 @@ export default function AuroraBayDemo() {
                         className="w-full text-left hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center"
                       >
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Premium Spa Experience
+                        {lang === 'fr' ? 'Expérience Spa Premium' : 'Premium Spa Experience'}
                       </button>
                       <button 
                         onClick={() => {
@@ -356,20 +362,22 @@ export default function AuroraBayDemo() {
                   <div className="group">
                     <div className="flex items-center space-x-3 mb-6">
                       <div className="w-1 h-8 bg-gradient-to-b from-[#7C8C6B] to-[#9BAF8A] rounded-full"></div>
-                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">CUISINE</h3>
+                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">
+                        {lang === 'fr' ? 'CUISINE' : 'CUISINE'}
+                      </h3>
                     </div>
                     <div className="space-y-4 sm:space-y-5 text-base sm:text-lg text-[#5B6B62] font-light pl-4">
                       <p className="hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center">
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Fine Dining
+                        {lang === 'fr' ? 'Gastronomie' : 'Fine Dining'}
                       </p>
                       <p className="hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center">
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Wine Cellar
+                        {lang === 'fr' ? 'Cave à Vin' : 'Wine Cellar'}
                       </p>
                       <p className="hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center">
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Private Chef
+                        {lang === 'fr' ? 'Chef Privé' : 'Private Chef'}
                       </p>
                     </div>
                   </div>
@@ -377,20 +385,22 @@ export default function AuroraBayDemo() {
                   <div className="group">
                     <div className="flex items-center space-x-3 mb-6">
                       <div className="w-1 h-8 bg-gradient-to-b from-[#7C8C6B] to-[#9BAF8A] rounded-full"></div>
-                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">SPA & GYM +</h3>
+                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">
+                        {lang === 'fr' ? 'SPA & GYM +' : 'SPA & GYM +'}
+                      </h3>
                     </div>
                     <div className="space-y-4 sm:space-y-5 text-base sm:text-lg text-[#5B6B62] font-light pl-4">
                       <p className="hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center">
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Wellness Center
+                        {lang === 'fr' ? 'Centre Wellness' : 'Wellness Center'}
                       </p>
                       <p className="hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center">
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Fitness Studio
+                        {lang === 'fr' ? 'Studio Fitness' : 'Fitness Studio'}
                       </p>
                       <p className="hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center">
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Massage Therapy
+                        {lang === 'fr' ? 'Thérapie par Massage' : 'Massage Therapy'}
                       </p>
                     </div>
                   </div>
@@ -398,20 +408,22 @@ export default function AuroraBayDemo() {
                   <div className="group">
                     <div className="flex items-center space-x-3 mb-6">
                       <div className="w-1 h-8 bg-gradient-to-b from-[#7C8C6B] to-[#9BAF8A] rounded-full"></div>
-                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">PHOTO GALLERY</h3>
+                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">
+                        {lang === 'fr' ? 'GALERIE PHOTO' : 'PHOTO GALLERY'}
+                      </h3>
                     </div>
                     <div className="space-y-4 sm:space-y-5 text-base sm:text-lg text-[#5B6B62] font-light pl-4">
                       <p className="hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center">
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Resort Views
+                        {lang === 'fr' ? 'Vues du Resort' : 'Resort Views'}
                       </p>
                       <p className="hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center">
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Room Photos
+                        {lang === 'fr' ? 'Photos des Chambres' : 'Room Photos'}
                       </p>
                       <p className="hover:text-[#2E2E2E] transition-all duration-300 cursor-pointer group/item flex items-center">
                         <span className="w-2 h-2 bg-[#7C8C6B] rounded-full mr-3 opacity-0 group-hover/item:opacity-100 transition-all duration-300"></span>
-                        Activities
+                        {lang === 'fr' ? 'Activités' : 'Activities'}
                       </p>
                     </div>
                   </div>
@@ -419,7 +431,9 @@ export default function AuroraBayDemo() {
                   <div className="group">
                     <div className="flex items-center space-x-3 mb-6">
                       <div className="w-1 h-8 bg-gradient-to-b from-[#7C8C6B] to-[#9BAF8A] rounded-full"></div>
-                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">CONTACT</h3>
+                      <h3 className="text-xl sm:text-2xl font-light text-[#2E2E2E] group-hover:text-[#7C8C6B] transition-colors duration-300">
+                        {lang === 'fr' ? 'CONTACT' : 'CONTACT'}
+                      </h3>
                     </div>
                     <div className="space-y-4 sm:space-y-5 text-base sm:text-lg text-[#5B6B62] font-light pl-4">
                       <button 
@@ -455,13 +469,15 @@ export default function AuroraBayDemo() {
             {/* Section CTA en bas du menu */}
             <div className="mt-20 pt-16 border-t border-[#E8E0D8]/30">
               <div className="text-center">
-                <h3 className="text-2xl sm:text-3xl font-light text-[#2E2E2E] mb-6">Ready to experience Aurora Bay?</h3>
+                <h3 className="text-2xl sm:text-3xl font-light text-[#2E2E2E] mb-6">
+                  {lang === 'fr' ? 'Prêt à découvrir Aurora Bay ?' : 'Ready to experience Aurora Bay?'}
+                </h3>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <button className="bg-[#7C8C6B] text-white px-8 py-3 rounded-lg hover:bg-[#6B7A5A] transition-all duration-300 font-medium hover:scale-105 transform">
-                    Book Your Stay
+                    {lang === 'fr' ? 'Réservez Votre Séjour' : 'Book Your Stay'}
                   </button>
                   <button className="border border-[#7C8C6B] text-[#7C8C6B] px-8 py-3 rounded-lg hover:bg-[#7C8C6B] hover:text-white transition-all duration-300 font-medium hover:scale-105 transform">
-                    Contact Us
+                    {lang === 'fr' ? 'Contactez-Nous' : 'Contact Us'}
                   </button>
                 </div>
               </div>
@@ -475,7 +491,7 @@ export default function AuroraBayDemo() {
         {/* Fond vidéo plein écran avec boucle parfaite */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/aurora-hero.mp4" 
+            src="/VIDEO/aurora-hero-light.mp4" 
             autoPlay 
             loop 
             muted 
@@ -504,7 +520,7 @@ export default function AuroraBayDemo() {
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center">
               <h2 className="text-sm sm:text-base md:text-lg font-light text-white/80 mb-3 sm:mb-4 tracking-[0.2em] uppercase">
-                feel good resort
+                {lang === 'fr' ? 'resort bien-être' : 'feel good resort'}
               </h2>
               <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white tracking-[0.05em] leading-[0.9]">
                 Aurora Bay
@@ -515,7 +531,10 @@ export default function AuroraBayDemo() {
           {/* Phrase descriptive en bas du Hero, centrée, typo fine - IDENTIQUE à Johannis */}
           <div className="mb-12 sm:mb-16 md:mb-20">
             <p className="text-sm sm:text-base md:text-lg lg:text-xl font-light text-white leading-relaxed tracking-wide max-w-3xl sm:max-w-4xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0" style={{ lineHeight: '1.6' }}>
-              YOUR HOTEL IN PARADISE. MOMENTS OF TRANQUILITY BETWEEN SEA AND NATURE.
+              {lang === 'fr' 
+                ? 'VOTRE HÔTEL AU PARADIS. MOMENTS DE TRANQUILLITÉ ENTRE MER ET NATURE.'
+                : 'YOUR HOTEL IN PARADISE. MOMENTS OF TRANQUILITY BETWEEN SEA AND NATURE.'
+              }
             </p>
             
             {/* Bouton CTA transparent stylé pour réserver - DESIGN AMÉLIORÉ */}
@@ -524,7 +543,7 @@ export default function AuroraBayDemo() {
               className="group relative inline-flex items-center justify-center px-12 py-4 text-lg font-light text-white border border-white/40 rounded-none overflow-hidden transition-all duration-500 hover:border-white hover:scale-[1.02] hover:px-16"
             >
               <span className="relative z-10 tracking-wide">
-                Reserve Your Stay
+                {lang === 'fr' ? 'Réservez Votre Séjour' : 'Reserve Your Stay'}
               </span>
               <div className="absolute inset-0 bg-white/5 backdrop-blur-sm group-hover:bg-white/15 transition-all duration-500"></div>
               <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
@@ -539,20 +558,26 @@ export default function AuroraBayDemo() {
           <div className="text-center mb-20 sm:mb-24 md:mb-28 lg:mb-32">
             {/* Titre principal avec meilleure hiérarchie */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[clamp(48px,8vw,80px)] font-light text-[#2E2E2E] mb-8 sm:mb-10 md:mb-12 leading-[1.08] tracking-wide">
-              Aurora Bay is a luxury retreat where modern design blends with breathtaking views.
+              {lang === 'fr'
+                ? 'Aurora Bay est un refuge de luxe où le design moderne se fond dans des vues à couper le souffle.'
+                : 'Aurora Bay is a luxury retreat where modern design blends with breathtaking views.'
+              }
             </h2>
             
             {/* Sous-titre séparé pour meilleure lisibilité */}
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-[#2E2E2E] mb-12 sm:mb-16 md:mb-20 leading-[1.1] tracking-wide">
-              An oasis of tranquility, sun, and water.
+              {lang === 'fr'
+                ? 'Une oasis de tranquillité, soleil et eau.'
+                : 'An oasis of tranquility, sun, and water.'
+              }
             </h3>
             
             {/* Description avec meilleur espacement */}
             <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl leading-[1.7] md:leading-[1.8] text-[#5B6B62] max-w-4xl lg:max-w-5xl mx-auto font-light">
-              Nestled in the heart of Bali's tropical paradise, Aurora Bay Resort offers an unparalleled experience 
-              where contemporary architecture meets pristine nature. Our commitment to authentic hospitality 
-              creates moments of pure serenity, allowing guests to reconnect with themselves and the world 
-              around them.
+              {lang === 'fr'
+                ? "Niché au cœur du paradis tropical de Bali, Aurora Bay Resort offre une expérience inégalée où l'architecture contemporaine rencontre la nature vierge. Notre engagement envers l'hospitalité authentique crée des moments de pure sérénité, permettant aux clients de se reconnecter avec eux-mêmes et le monde qui les entoure."
+                : "Nestled in the heart of Bali's tropical paradise, Aurora Bay Resort offers an unparalleled experience where contemporary architecture meets pristine nature. Our commitment to authentic hospitality creates moments of pure serenity, allowing guests to reconnect with themselves and the world around them."
+              }
             </p>
           </div>
 
@@ -588,19 +613,22 @@ export default function AuroraBayDemo() {
                 <div className="text-white">
                   <div className="overflow-hidden">
                     <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light tracking-wide mb-2 transform translate-y-0 opacity-100 transition-all duration-1000 delay-300 ease-out group-hover:translate-y-[-2px]">
-                      Premium Wellness Experience
+                      {lang === 'fr' ? 'Expérience Wellness Premium' : 'Premium Wellness Experience'}
                     </p>
                   </div>
                   <div className="overflow-hidden">
                     <p className="text-sm sm:text-base md:text-lg text-white/80 font-light transform translate-y-0 opacity-100 transition-all duration-1000 delay-500 ease-out group-hover:translate-y-[-1px]">
-                      State-of-the-art sauna with HUUM technology
+                      {lang === 'fr'
+                        ? 'Sauna de dernière génération avec technologie HUUM'
+                        : 'State-of-the-art sauna with HUUM technology'
+                      }
                     </p>
                   </div>
                   
                   {/* Bouton CTA avec animation d'entrée */}
                   <div className="overflow-hidden mt-6 sm:mt-8">
                     <button className="bg-white/10 backdrop-blur-sm text-white border border-white/30 px-6 py-3 rounded-lg hover:bg-white/20 hover:border-white/50 transition-all duration-500 transform translate-y-0 opacity-100 transition-all duration-1000 delay-700 ease-out group-hover:translate-y-[-2px] group-hover:scale-105">
-                      Discover More
+                      {lang === 'fr' ? 'Découvrir Plus' : 'Discover More'}
                     </button>
                   </div>
                 </div>
@@ -618,7 +646,7 @@ export default function AuroraBayDemo() {
         {/* Vidéo immersive en arrière-plan */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-                            src="/VIDEO/aurora-luxury-redefined.mp4" 
+                            src="/VIDEO/aurora-luxury2-light.mp4" 
             autoPlay 
             loop 
             muted 
@@ -644,10 +672,13 @@ export default function AuroraBayDemo() {
         <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-6xl mx-auto">
           <div className="text-white">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-8 sm:mb-12 tracking-wide leading-[1.1]">
-              LUXURY REDEFINED
+              {lang === 'fr' ? 'LE LUXE REDÉFINI' : 'LUXURY REDEFINED'}
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-12 sm:mb-16 max-w-4xl mx-auto leading-relaxed tracking-wide">
-              Experience the perfect blend of sophistication and comfort in every detail
+              {lang === 'fr'
+                ? 'Découvrez le mélange parfait de sophistication et de confort dans chaque détail'
+                : 'Experience the perfect blend of sophistication and comfort in every detail'
+              }
             </p>
             <div className="flex justify-center">
               <button
@@ -655,7 +686,7 @@ export default function AuroraBayDemo() {
                 className="group relative inline-flex items-center justify-center px-10 py-4 text-lg font-light text-white border border-white/60 rounded-none overflow-hidden transition-all duration-500 hover:border-white hover:scale-[1.02] hover:px-14"
               >
                 <span className="relative z-10 tracking-wide">
-                  Discover More
+                  {lang === 'fr' ? 'Découvrir Plus' : 'Discover More'}
                 </span>
                 <div className="absolute inset-0 bg-white/10 backdrop-blur-sm group-hover:bg-white/20 transition-all duration-500"></div>
                 <div className="absolute bottom-0 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-700 ease-out"></div>
@@ -671,21 +702,32 @@ export default function AuroraBayDemo() {
           {/* Titre principal avec design amélioré */}
           <div className="mb-20 sm:mb-24 md:mb-28 lg:mb-32">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-[clamp(40px,6vw,72px)] font-light text-[#2E2E2E] mb-8 sm:mb-12 md:mb-16 leading-[1.08] tracking-wide">
-              IN A 5-STAR HOTEL AND YET SO FREE.
+              {lang === 'fr'
+                ? 'DANS UN HÔTEL 5 ÉTOILES ET POURTANT SI LIBRE.'
+                : 'IN A 5-STAR HOTEL AND YET SO FREE.'
+              }
             </h2>
             <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-[#2E2E2E] mb-8 sm:mb-12 leading-[1.1] tracking-wide">
-              SO PERSONAL. SO FEEL GOOD.
+              {lang === 'fr'
+                ? 'SI PERSONNEL. SI BIEN-ÊTRE.'
+                : 'SO PERSONAL. SO FEEL GOOD.'
+              }
             </h3>
           </div>
           
           {/* Description avec meilleur espacement et design */}
           <div className="max-w-4xl lg:max-w-5xl mx-auto">
             <p className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl text-[#5B6B62] font-light leading-[1.7] md:leading-[1.8] mb-12 sm:mb-16">
-              Aurora Bay redefines luxury hospitality by offering an experience that feels both 
-              exclusive and authentically personal.
+              {lang === 'fr'
+                ? "Aurora Bay redéfinit l'hospitalité de luxe en offrant une expérience à la fois exclusive et authentiquement personnelle."
+                : 'Aurora Bay redefines luxury hospitality by offering an experience that feels both exclusive and authentically personal.'
+              }
             </p>
             <p className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-[#5B6B62] font-light leading-[1.6] md:leading-[1.7]">
-              Here, every guest is treated like family, creating connections that last far beyond your stay.
+              {lang === 'fr'
+                ? 'Ici, chaque client est traité comme un membre de la famille, créant des liens qui durent bien au-delà de votre séjour.'
+                : 'Here, every guest is treated like family, creating connections that last far beyond your stay.'
+              }
             </p>
           </div>
           
@@ -705,7 +747,7 @@ export default function AuroraBayDemo() {
         {/* Vidéo immersive en arrière-plan */}
         <div className="absolute inset-0 w-full h-full">
           <video 
-            src="/VIDEO/aurora-timeless.mp4" 
+            src="/VIDEO/aurora-luxury3-light.mp4" 
             autoPlay 
             loop 
             muted 
@@ -731,10 +773,13 @@ export default function AuroraBayDemo() {
         <div className="relative z-10 text-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-6xl mx-auto">
           <div className="text-white">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-8 sm:mb-12 tracking-wide leading-[1.1]">
-              TIMELESS ELEGANCE
+              {lang === 'fr' ? 'ÉLÉGANCE INTEMPORELLE' : 'TIMELESS ELEGANCE'}
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-12 sm:mb-16 max-w-4xl mx-auto leading-relaxed tracking-wide">
-              Where every moment becomes a cherished memory of luxury and refinement
+              {lang === 'fr'
+                ? 'Où chaque moment devient un précieux souvenir de luxe et de raffinement'
+                : 'Where every moment becomes a cherished memory of luxury and refinement'
+              }
             </p>
             <div className="flex justify-center">
               <button
@@ -759,12 +804,15 @@ export default function AuroraBayDemo() {
           <div className="text-center mb-20 sm:mb-24 md:mb-28 lg:mb-32">
             <div className="overflow-hidden">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-[#2E2E2E] mb-8 sm:mb-12 tracking-wide transform translate-y-0 opacity-100 transition-all duration-1000 ease-out animate-fade-in-up">
-                Immersive Experiences
+                {lang === 'fr' ? 'Expériences Immersives' : 'Immersive Experiences'}
               </h2>
             </div>
             <div className="overflow-hidden">
               <p className="text-lg sm:text-xl md:text-2xl text-[#5B6B62] font-light max-w-4xl mx-auto leading-relaxed transform translate-y-0 opacity-100 transition-all duration-1000 delay-300 ease-out animate-fade-in-up">
-                Discover the extraordinary moments that make Aurora Bay more than just a hotel
+                {lang === 'fr'
+                  ? "Découvrez les moments extraordinaires qui font d'Aurora Bay bien plus qu'un simple hôtel"
+                  : 'Discover the extraordinary moments that make Aurora Bay more than just a hotel'
+                }
               </p>
             </div>
           </div>
@@ -788,12 +836,15 @@ export default function AuroraBayDemo() {
               <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12 md:p-16 text-white transform translate-y-0 opacity-100 transition-all duration-1000 delay-500 ease-out">
                 <div className="overflow-hidden">
                   <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light mb-4 sm:mb-6 transform translate-y-0 opacity-100 transition-all duration-1000 delay-700 ease-out">
-                    Where Luxury Meets Nature
+                    {lang === 'fr' ? 'Où le Luxe Rencontre la Nature' : 'Where Luxury Meets Nature'}
                   </h3>
                 </div>
                 <div className="overflow-hidden">
                   <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl leading-relaxed transform translate-y-0 opacity-100 transition-all duration-1000 delay-900 ease-out">
-                    Every moment at Aurora Bay is designed to create unforgettable memories. From the moment you arrive, you'll feel the magic of this extraordinary place.
+                    {lang === 'fr'
+                      ? "Chaque moment à Aurora Bay est conçu pour créer des souvenirs inoubliables. Dès votre arrivée, vous ressentirez la magie de ce lieu extraordinaire."
+                      : "Every moment at Aurora Bay is designed to create unforgettable memories. From the moment you arrive, you'll feel the magic of this extraordinary place."
+                    }
                   </p>
                 </div>
               </div>
@@ -815,7 +866,10 @@ export default function AuroraBayDemo() {
                   </div>
                 </div>
                 <p className="text-[#5B6B62] leading-relaxed mb-4 italic">
-                  "The spa experience was beyond anything we've ever experienced. The facial treatments and sauna sessions were absolutely transformative."
+                  {lang === 'fr'
+                    ? "\"L'expérience spa a dépassé tout ce que nous avons jamais vécu. Les soins du visage et les séances de sauna ont été absolument transformateurs.\""
+                    : "\"The spa experience was beyond anything we've ever experienced. The facial treatments and sauna sessions were absolutely transformative.\""
+                  }
                 </p>
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => (
@@ -838,7 +892,10 @@ export default function AuroraBayDemo() {
                   </div>
                 </div>
                 <p className="text-[#5B6B62] leading-relaxed mb-4 italic">
-                  "The poolside dining experience was magical. Fresh sushi by the pool with tropical garden views - absolutely unforgettable!"
+                  {lang === 'fr'
+                    ? "\"L'expérience gastronomique au bord de la piscine était magique. Sushi frais au bord de la piscine avec vue sur le jardin tropical - absolument inoubliable !\""
+                    : "\"The poolside dining experience was magical. Fresh sushi by the pool with tropical garden views - absolutely unforgettable!\""
+                  }
                 </p>
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => (
@@ -861,7 +918,10 @@ export default function AuroraBayDemo() {
                   </div>
                 </div>
                 <p className="text-[#5B6B62] leading-relaxed mb-4 italic">
-                  "The presidential villa exceeded all expectations. Private pool, tropical garden views, and impeccable service. Pure luxury!"
+                  {lang === 'fr'
+                    ? '"La villa présidentielle a dépassé toutes nos attentes. Piscine privée, vues sur le jardin tropical, et service impeccable. Luxe pur !"'
+                    : '"The presidential villa exceeded all expectations. Private pool, tropical garden views, and impeccable service. Pure luxury!"'
+                  }
                 </p>
                 <div className="flex text-yellow-400">
                   {[...Array(5)].map((_, i) => (
@@ -878,7 +938,7 @@ export default function AuroraBayDemo() {
           <div className="mb-20 sm:mb-24 md:mb-28 lg:mb-32">
             <div className="overflow-hidden">
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-light text-[#2E2E2E] text-center mb-12 sm:mb-16 transform translate-y-0 opacity-100 transition-all duration-1000 delay-600 ease-out animate-fade-in-up">
-                Our Story
+                {lang === 'fr' ? 'Notre Histoire' : 'Our Story'}
               </h3>
             </div>
             <div className="relative">
@@ -891,7 +951,9 @@ export default function AuroraBayDemo() {
                   <div className="w-4 h-4 bg-[#7C8C6B] rounded-full absolute left-1/2 transform -translate-x-1/2 z-10 animate-pulse-slow"></div>
                   <div className="w-1/2 pr-8 text-right">
                     <h4 className="text-xl font-medium text-[#2E2E2E] mb-2">2006</h4>
-                    <p className="text-[#5B6B62]">Foundation of Aurora Bay Resort</p>
+                    <p className="text-[#5B6B62]">
+                      {lang === 'fr' ? 'Fondation du Resort Aurora Bay' : 'Foundation of Aurora Bay Resort'}
+                    </p>
                   </div>
                 </div>
                 
@@ -900,7 +962,9 @@ export default function AuroraBayDemo() {
                   <div className="w-4 h-4 bg-[#7C8C6B] rounded-full absolute left-1/2 transform -translate-x-1/2 z-10 animate-pulse-slow"></div>
                   <div className="w-1/2 pl-8 text-left ml-auto">
                     <h4 className="text-xl font-medium text-[#2E2E2E] mb-2">2015</h4>
-                    <p className="text-[#5B6B62]">Opening of the Luxury Spa & Wellness Center</p>
+                    <p className="text-[#5B6B62]">
+                      {lang === 'fr' ? 'Ouverture du Spa de Luxe & Centre Wellness' : 'Opening of the Luxury Spa & Wellness Center'}
+                    </p>
                   </div>
                 </div>
                 
@@ -909,7 +973,9 @@ export default function AuroraBayDemo() {
                   <div className="w-4 h-4 bg-[#7C8C6B] rounded-full absolute left-1/2 transform -translate-x-1/2 z-10 animate-pulse-slow"></div>
                   <div className="w-1/2 pr-8 text-right">
                     <h4 className="text-xl font-medium text-[#2E2E2E] mb-2">2025</h4>
-                    <p className="text-[#5B6B62]">Launch of the Presidential Villa Collection</p>
+                    <p className="text-[#5B6B62]">
+                      {lang === 'fr' ? 'Lancement de la Collection Villa Présidentielle' : 'Launch of the Presidential Villa Collection'}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -927,10 +993,13 @@ export default function AuroraBayDemo() {
         <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 max-w-7xl mx-auto">
           <div className="text-center mb-20 sm:mb-24 md:mb-28 lg:mb-32">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-[#2E2E2E] mb-8 sm:mb-12 tracking-wide">
-              Luxury Services
+              {lang === 'fr' ? 'Services de Luxe' : 'Luxury Services'}
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-[#5B6B62] font-light max-w-4xl mx-auto leading-relaxed">
-              Discover our curated collection of premium experiences designed for the discerning traveler
+              {lang === 'fr'
+                ? "Découvrez notre collection d'expériences premium conçues pour les voyageurs exigeants"
+                : 'Discover our curated collection of premium experiences designed for the discerning traveler'
+              }
             </p>
           </div>
           
@@ -950,17 +1019,22 @@ export default function AuroraBayDemo() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-medium text-[#2E2E2E] mb-4">VIP Concierge</h3>
+              <h3 className="text-2xl sm:text-3xl font-medium text-[#2E2E2E] mb-4">
+                {lang === 'fr' ? 'Conciergerie VIP' : 'VIP Concierge'}
+              </h3>
               <p className="text-[#5B6B62] leading-relaxed mb-4">
-                Personalized service with dedicated staff available 24/7 for all your needs. From restaurant reservations to exclusive experiences, we handle everything.
+                {lang === 'fr'
+                  ? 'Service personnalisé avec personnel dédié disponible 24h/24 pour tous vos besoins. Des réservations de restaurants aux expériences exclusives, nous nous occupons de tout.'
+                  : 'Personalized service with dedicated staff available 24/7 for all your needs. From restaurant reservations to exclusive experiences, we handle everything.'
+                }
               </p>
               <div className="flex items-center text-[#7C8C6B] text-sm">
                 <span className="mr-2">●</span>
-                <span>Available 24/7</span>
+                <span>{lang === 'fr' ? 'Disponible 24h/24' : 'Available 24/7'}</span>
               </div>
               <div className="flex items-center text-[#7C8C6B] text-sm">
                 <span className="mr-2">●</span>
-                <span>Personalized recommendations</span>
+                <span>{lang === 'fr' ? 'Recommandations personnalisées' : 'Personalized recommendations'}</span>
               </div>
             </div>
             
@@ -978,17 +1052,22 @@ export default function AuroraBayDemo() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-medium text-[#2E2E2E] mb-4">Premium Spa</h3>
+              <h3 className="text-2xl sm:text-3xl font-medium text-[#2E2E2E] mb-4">
+                {lang === 'fr' ? 'Spa Premium' : 'Premium Spa'}
+              </h3>
               <p className="text-[#5B6B62] leading-relaxed mb-4">
-                Exclusive access to our luxury spa with private treatment rooms, expert therapists, and world-class wellness programs.
+                {lang === 'fr'
+                  ? 'Accès exclusif à notre spa de luxe avec salles de soins privées, thérapeutes experts et programmes wellness de classe mondiale.'
+                  : 'Exclusive access to our luxury spa with private treatment rooms, expert therapists, and world-class wellness programs.'
+                }
               </p>
               <div className="flex items-center text-[#7C8C6B] text-sm">
                 <span className="mr-2">●</span>
-                <span>Private treatment rooms</span>
+                <span>{lang === 'fr' ? 'Salles de soins privées' : 'Private treatment rooms'}</span>
               </div>
               <div className="flex items-center text-[#7C8C6B] text-sm">
                 <span className="mr-2">●</span>
-                <span>Expert therapists</span>
+                <span>{lang === 'fr' ? 'Thérapeutes experts' : 'Expert therapists'}</span>
               </div>
             </div>
 
@@ -1006,17 +1085,22 @@ export default function AuroraBayDemo() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-medium text-[#2E2E2E] mb-4">Fine Dining</h3>
+              <h3 className="text-2xl sm:text-3xl font-medium text-[#2E2E2E] mb-4">
+                {lang === 'fr' ? 'Gastronomie' : 'Fine Dining'}
+              </h3>
               <p className="text-[#5B6B62] leading-relaxed mb-4">
-                Experience world-class cuisine with our award-winning chefs. Fresh sushi by the pool, gourmet dining with tropical garden views.
+                {lang === 'fr'
+                  ? 'Découvrez une cuisine de classe mondiale avec nos chefs primés. Sushi frais au bord de la piscine, repas gastronomiques avec vue sur le jardin tropical.'
+                  : 'Experience world-class cuisine with our award-winning chefs. Fresh sushi by the pool, gourmet dining with tropical garden views.'
+                }
               </p>
               <div className="flex items-center text-[#7C8C6B] text-sm">
                 <span className="mr-2">●</span>
-                <span>Fresh sushi by the pool</span>
+                <span>{lang === 'fr' ? 'Sushi frais au bord de la piscine' : 'Fresh sushi by the pool'}</span>
               </div>
               <div className="flex items-center text-[#7C8C6B] text-sm">
                 <span className="mr-2">●</span>
-                <span>Gourmet tropical dining</span>
+                <span>{lang === 'fr' ? 'Gastronomie tropicale' : 'Gourmet tropical dining'}</span>
               </div>
             </div>
           </div>
@@ -1024,22 +1108,62 @@ export default function AuroraBayDemo() {
           {/* Call-to-action final immersif */}
           <div className="bg-gradient-to-r from-[#7C8C6B] to-[#9BAF8A] rounded-2xl p-8 sm:p-10 lg:p-12 text-center text-white">
             <h3 className="text-2xl sm:text-3xl md:text-4xl font-light mb-6 sm:mb-8">
-              Experience the Magic of Aurora Bay
+              {lang === 'fr' ? "Vivez la Magie d'Aurora Bay" : 'Experience the Magic of Aurora Bay'}
             </h3>
             <p className="text-lg sm:text-xl text-white/90 mb-8 sm:mb-10 max-w-2xl mx-auto">
-              Every moment here is designed to create the ultimate luxury experience. Let us make your dreams come true.
+              {lang === 'fr'
+                ? "Chaque moment ici est conçu pour créer l'expérience de luxe ultime. Laissez-nous réaliser vos rêves."
+                : "Every moment here is designed to create the ultimate luxury experience. Let us make your dreams come true."
+              }
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
               <button
                 onClick={toggleReservation}
                 className="bg-white text-[#7C8C6B] px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 font-medium text-lg hover:scale-105"
               >
-                Book Your Stay
+                {lang === 'fr' ? 'Réservez Votre Séjour' : 'Book Your Stay'}
               </button>
               <button className="border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-[#7C8C6B] transition-all duration-300 font-medium text-lg">
-                Contact Us
+                {lang === 'fr' ? 'Contactez-Nous' : 'Contact Us'}
               </button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Final - Conversion après exploration de la démo */}
+      <section className="py-20 bg-gradient-to-br from-[#1A1A1A] via-[#2D2D2D] to-[#1A1A1A] text-white">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+              {lang === 'fr' 
+                ? 'Prêt à construire un système similaire pour votre business ?'
+                : 'Ready to build a similar system for your business?'
+              }
+            </h2>
+            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+              {lang === 'fr'
+                ? 'Transformons votre site en machine de conversion. Réservez un audit stratégique gratuit.'
+                : 'Transform your website into a conversion machine. Book a free strategic audit.'
+              }
+            </p>
+            <a
+              href="/briefing"
+              className="inline-flex items-center justify-center bg-[#2D5A27] text-white px-10 py-5 rounded-lg transition-all duration-300 text-base md:text-lg font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(45,90,39,0.6)] hover:scale-105 transform uppercase tracking-wider"
+            >
+              <span className="relative z-10">
+                {lang === 'fr'
+                  ? '[ RÉSERVER MON AUDIT GRATUIT ]'
+                  : '[ BOOK MY FREE AUDIT ]'
+                }
+              </span>
+            </a>
+            <p className="text-sm text-gray-400 mt-6">
+              {lang === 'fr'
+                ? '✓ 45 minutes • ✓ Sans engagement • ✓ Résultats concrets'
+                : '✓ 45 minutes • ✓ No commitment • ✓ Concrete results'
+              }
+            </p>
           </div>
         </div>
       </section>
@@ -1053,7 +1177,10 @@ export default function AuroraBayDemo() {
               <h3 className="text-xl sm:text-2xl md:text-3xl font-light text-white mb-6 sm:mb-8">Aurora Bay Resort</h3>
               <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-6 sm:mb-8 max-w-sm sm:max-w-md leading-relaxed">
                 Jl. Aurora Bay 1, Ubud, Bali 80571, Indonesia<br />
-                Luxury retreat in the heart of Bali's tropical paradise
+                {lang === 'fr' 
+                  ? 'Retraite de luxe au cœur du paradis tropical de Bali'
+                  : 'Luxury retreat in the heart of Bali\'s tropical paradise'
+                }
               </p>
               <div className="flex space-x-4 sm:space-x-6">
                 <a href="#" className="text-gray-400 hover:text-white transition-colors duration-300">
@@ -1076,15 +1203,17 @@ export default function AuroraBayDemo() {
             
             {/* Liens rapides */}
             <div>
-              <h4 className="text-lg sm:text-xl font-light text-white mb-6 sm:mb-8">Quick Links</h4>
+              <h4 className="text-lg sm:text-xl font-light text-white mb-6 sm:mb-8">
+                {lang === 'fr' ? 'Liens Rapides' : 'Quick Links'}
+              </h4>
               <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base text-gray-300">
                 <li><Link href="#" className="hover:text-white transition-colors duration-300 flex items-center group">
                   <ChevronRight size={14} className="sm:w-4 sm:h-4 mr-2 sm:mr-3 group-hover:translate-x-1 transition-transform duration-300" />
-                  Rooms
+                  {lang === 'fr' ? 'Chambres' : 'Rooms'}
                 </Link></li>
                 <li><Link href="#" className="hover:text-white transition-colors duration-300 flex items-center group">
                   <ChevronRight size={14} className="sm:w-4 sm:h-4 mr-2 sm:mr-3 group-hover:translate-x-1 transition-transform duration-300" />
-                  Cuisine
+                  {lang === 'fr' ? 'Cuisine' : 'Cuisine'}
                 </Link></li>
                 <li><Link href="#" className="hover:text-white transition-colors duration-300 flex items-center group">
                   <ChevronRight size={14} className="sm:w-4 sm:h-4 mr-2 sm:mr-3 group-hover:translate-x-1 transition-transform duration-300" />
@@ -1092,7 +1221,7 @@ export default function AuroraBayDemo() {
                 </Link></li>
                 <li><Link href="#immersive-experiences" className="hover:text-white transition-colors duration-300 flex items-center group">
                   <ChevronRight size={14} className="sm:w-4 sm:h-4 mr-2 sm:mr-3 group-hover:translate-x-1 transition-transform duration-300" />
-                  Immersive Experiences
+                  {lang === 'fr' ? 'Expériences Immersives' : 'Immersive Experiences'}
                 </Link></li>
                 <li><Link href="#" className="hover:text-white transition-colors duration-300 flex items-center group">
                   <ChevronRight size={14} className="sm:w-4 sm:h-4 mr-2 sm:mr-3 group-hover:translate-x-1 transition-transform duration-300" />
@@ -1142,7 +1271,9 @@ export default function AuroraBayDemo() {
             <div className="sticky top-0 bg-gradient-to-r from-[#7C8C6B] to-[#9BAF8A] text-white p-6 rounded-t-2xl">
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-2xl font-light">Reserve Your Stay</h2>
+                  <h2 className="text-2xl font-light">
+                    {lang === 'fr' ? 'Réservez Votre Séjour' : 'Reserve Your Stay'}
+                  </h2>
                   <p className="text-white/80 mt-1">Aurora Bay Resort</p>
                 </div>
                 <button
@@ -1162,11 +1293,13 @@ export default function AuroraBayDemo() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-medium text-gray-800 flex items-center">
                       <Calendar size={20} className="mr-2 text-[#7C8C6B]" />
-                      Select Dates
+                      {lang === 'fr' ? 'Sélectionner les Dates' : 'Select Dates'}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Check-in</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          {lang === 'fr' ? 'Arrivée' : 'Check-in'}
+                        </label>
                         <input
                           type="date"
                           value={selectedDates.checkIn}
@@ -1175,7 +1308,9 @@ export default function AuroraBayDemo() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">Check-out</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          {lang === 'fr' ? 'Départ' : 'Check-out'}
+                        </label>
                         <input
                           type="date"
                           value={selectedDates.checkOut}
@@ -1190,7 +1325,7 @@ export default function AuroraBayDemo() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-medium text-gray-800 flex items-center">
                       <Users size={20} className="mr-2 text-[#7C8C6B]" />
-                      Number of Guests
+                      {lang === 'fr' ? 'Nombre de Voyageurs' : 'Number of Guests'}
                     </h3>
                     <div className="flex items-center space-x-4">
                       <button
@@ -1213,7 +1348,7 @@ export default function AuroraBayDemo() {
                   <div className="space-y-4">
                     <h3 className="text-lg font-medium text-gray-800 flex items-center">
                       <Home size={20} className="mr-2 text-[#7C8C6B]" />
-                      Room Type
+                      {lang === 'fr' ? 'Type de Chambre' : 'Room Type'}
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {[
@@ -1244,7 +1379,9 @@ export default function AuroraBayDemo() {
                   {/* Résumé du prix */}
                   {(selectedDates.checkIn && selectedDates.checkOut) && (
                     <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                      <h4 className="font-medium text-gray-800 mb-3">Reservation Summary</h4>
+                      <h4 className="font-medium text-gray-800 mb-3">
+                        {lang === 'fr' ? 'Résumé de la Réservation' : 'Reservation Summary'}
+                      </h4>
                       <div className="space-y-2 text-sm">
                         <div className="flex justify-between">
                           <span className="text-gray-600">Room Type:</span>
@@ -1289,7 +1426,7 @@ export default function AuroraBayDemo() {
                     className="w-full bg-[#7C8C6B] text-white py-4 rounded-lg font-medium text-lg hover:bg-[#6B7A5A] transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                   >
                     <CreditCard size={20} />
-                    <span>Confirm Reservation</span>
+                    <span>{lang === 'fr' ? 'Confirmer la Réservation' : 'Confirm Reservation'}</span>
                   </button>
                 </>
               ) : (

@@ -7,16 +7,14 @@ export default function Footer() {
   const { lang } = useI18n();
   const pathname = usePathname();
 
-  // Ne pas afficher le footer sur les pages de démo
-  if (pathname?.startsWith('/demo/')) {
+  // Ne pas afficher le footer sur les pages de démo et audit-systeme
+  if (pathname?.startsWith('/demo/') || pathname === '/audit-systeme') {
     return null;
   }
 
   const footerLinks = [
-    { href: '/#demos', label: lang === 'fr' ? 'Démos' : 'Demos' },
-    { href: '/#why', label: lang === 'fr' ? 'Pourquoi moi' : 'Why me' },
-    { href: '/#about', label: lang === 'fr' ? 'À propos' : 'About' },
-    { href: '/#contact', label: lang === 'fr' ? 'Contact' : 'Contact' }
+    { href: '/#demos', label: lang === 'fr' ? 'Systèmes' : 'Systems' },
+    { href: '/#method', label: lang === 'fr' ? 'Méthode' : 'Method' }
   ];
 
   return (
@@ -33,10 +31,8 @@ export default function Footer() {
           </div>
 
           <nav className="flex flex-wrap justify-center gap-6">
-            <a className="text-[#4A4A4A] hover:text-[#2D5A27] transition-colors font-medium" href="/#demos">{lang === 'fr' ? 'Démos' : 'Demos'}</a>
-            <a className="text-[#4A4A4A] hover:text-[#2D5A27] transition-colors font-medium" href="/#why">{lang === 'fr' ? 'Pourquoi moi' : 'Why me'}</a>
-            <a className="text-[#4A4A4A] hover:text-[#2D5A27] transition-colors font-medium" href="/#about">{lang === 'fr' ? 'À propos' : 'About'}</a>
-            <a className="text-[#4A4A4A] hover:text-[#2D5A27] transition-colors font-medium" href="/#contact">{lang === 'fr' ? 'Contact' : 'Contact'}</a>
+            <a className="text-[#4A4A4A] hover:text-[#2D5A27] transition-colors font-medium" href="/#demos">{lang === 'fr' ? 'Systèmes' : 'Systems'}</a>
+            <a className="text-[#4A4A4A] hover:text-[#2D5A27] transition-colors font-medium" href="/#method">{lang === 'fr' ? 'Méthode' : 'Method'}</a>
           </nav>
         </div>
       </div>

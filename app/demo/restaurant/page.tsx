@@ -1,8 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useI18n } from '@/hooks/useI18n';
 
 export default function RestaurantDemo() {
+  const { lang } = useI18n();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('accueil');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -148,8 +150,8 @@ export default function RestaurantDemo() {
               {/* Navigation desktop avec animations */}
               <div className="hidden lg:flex items-center space-x-8">
                 {[
-                  { href: '#accueil', label: 'ACCUEIL' },
-                  { href: '#histoire', label: 'HISTOIRE' },
+                  { href: '#accueil', label: lang === 'fr' ? 'ACCUEIL' : 'HOME' },
+                  { href: '#histoire', label: lang === 'fr' ? 'HISTOIRE' : 'STORY' },
                   { href: '#menu', label: 'MENU' },
                   { href: '#contact', label: 'CONTACT' }
                 ].map((item) => (
@@ -174,10 +176,10 @@ export default function RestaurantDemo() {
               <div className="hidden sm:block text-center">
                 <h1 className={`text-lg sm:text-xl font-bold transition-transform duration-200 ${
                   isScrolled ? 'text-white scale-95' : 'text-white scale-100'
-                }`}>L'Atelier du Chef</h1>
+                }`}>{lang === 'fr' ? "L'Atelier du Chef" : "The Chef's Workshop"}</h1>
                 <p className={`text-xs transition-transform duration-200 ${
                   isScrolled ? 'text-white/60 scale-90' : 'text-white/70 scale-100'
-                }`}>Excellence gastronomique</p>
+                }`}>{lang === 'fr' ? 'Excellence gastronomique' : 'Gastronomic Excellence'}</p>
               </div>
               </div>
               
@@ -192,7 +194,7 @@ export default function RestaurantDemo() {
                   }`}
                 >
                   <span className="relative z-10 text-xs sm:text-sm font-light tracking-[0.15em] transition-all duration-300 group-hover:text-stone-200">
-                    RÉSERVER
+                    {lang === 'fr' ? 'RÉSERVER' : 'BOOK'}
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-stone-600/20 to-stone-800/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-out"></div>
               </button>
@@ -233,8 +235,8 @@ export default function RestaurantDemo() {
                   <div className="w-10 h-10 bg-gradient-to-br from-stone-600/80 to-stone-800/80 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20">
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-white">L'Atelier du Chef</h2>
-                    <p className="text-xs text-white/70 font-light">Menu de navigation</p>
+                    <h2 className="text-xl font-bold text-white">{lang === 'fr' ? "L'Atelier du Chef" : "The Chef's Workshop"}</h2>
+                    <p className="text-xs text-white/70 font-light">{lang === 'fr' ? 'Menu de navigation' : 'Navigation Menu'}</p>
                   </div>
                 </div>
                 <button 
@@ -251,8 +253,8 @@ export default function RestaurantDemo() {
               <nav className="flex-1 space-y-6">
                 <div className="space-y-3">
                   {[
-                    { href: '#accueil', label: 'Accueil', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-                    { href: '#histoire', label: 'Notre Histoire', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253' },
+                    { href: '#accueil', label: lang === 'fr' ? 'Accueil' : 'Home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+                    { href: '#histoire', label: lang === 'fr' ? 'Notre Histoire' : 'Our Story', icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253' },
                     { href: '#menu', label: 'Menu', icon: 'M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m6 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01' }
                   ].map((item) => (
                                           <button 
@@ -279,7 +281,7 @@ export default function RestaurantDemo() {
               
               {/* Contact premium avec design sophistiqué */}
               <div className="pt-8 border-t border-white/20">
-                <div className="text-xs font-bold text-white/60 uppercase tracking-[0.3em] mb-6">Contact</div>
+                <div className="text-xs font-bold text-white/60 uppercase tracking-[0.3em] mb-6">{lang === 'fr' ? 'Contact' : 'Contact'}</div>
                 <div className="space-y-4 mb-6">
                   <div className="flex items-center space-x-4">
                     <div className="w-8 h-8 bg-white/5 backdrop-blur-sm rounded-lg flex items-center justify-center border border-white/10">
@@ -310,7 +312,7 @@ export default function RestaurantDemo() {
                       </svg>
                     </div>
                     <div className="text-left">
-                      <div className="text-xs text-white/70 font-light tracking-wide">Appeler maintenant</div>
+                      <div className="text-xs text-white/70 font-light tracking-wide">{lang === 'fr' ? 'Appeler maintenant' : 'Call now'}</div>
                       <div className="text-sm font-bold tracking-wider">+33 1 45 67 89 01</div>
                     </div>
                   </div>
@@ -354,10 +356,10 @@ export default function RestaurantDemo() {
         <div className="relative z-10 text-center text-white">
           <div className="mb-8">
             <div className="font-script text-lg opacity-80 tracking-wide mb-4 animate-fade-in-up drop-shadow-lg">
-              Bienvenue
+              {lang === 'fr' ? 'Bienvenue' : 'Welcome'}
             </div>
             <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl tracking-tight font-light leading-none animate-fade-in-up drop-shadow-2xl" style={{ animationDelay: '0.3s' }}>
-              L'Atelier<br />du Chef
+              {lang === 'fr' ? "L'Atelier" : "The Chef's"}<br />{lang === 'fr' ? 'du Chef' : 'Workshop'}
             </h1>
           </div>
 
@@ -369,7 +371,7 @@ export default function RestaurantDemo() {
               className="group px-8 py-4 border border-white/60 text-white hover:border-white hover:bg-white/5 transition-all duration-300 font-light tracking-wide"
             >
               <span className="group-hover:translate-x-1 transition-transform duration-300 inline-block">
-                DÉCOUVRIR →
+                {lang === 'fr' ? 'DÉCOUVRIR →' : 'DISCOVER →'}
               </span>
             </button>
             
@@ -379,7 +381,7 @@ export default function RestaurantDemo() {
               className="group px-8 py-4 border border-white/40 text-white/90 hover:border-white hover:text-white transition-all duration-300 font-light tracking-wide"
             >
               <span className="group-hover:translate-x-1 transition-transform duration-300 inline-block">
-                RÉSERVER →
+                {lang === 'fr' ? 'RÉSERVER →' : 'BOOK →'}
               </span>
             </button>
           </div>
@@ -393,23 +395,25 @@ export default function RestaurantDemo() {
             {/* Text Content */}
             <div className="space-y-8">
               <h2 className="font-serif text-4xl md:text-5xl tracking-tight text-black animate-fade-in-up">
-                Notre histoire
+                {lang === 'fr' ? 'Notre histoire' : 'Our Story'}
               </h2>
               <p className="text-lg leading-relaxed text-black/80 font-light animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                Depuis plus de deux décennies, L'Atelier du Chef incarne l'excellence gastronomique française. 
-                Notre passion pour les produits d'exception et notre respect des traditions culinaires 
-                nous poussent à créer des expériences uniques, où chaque plat raconte une histoire.
+                {lang === 'fr' 
+                  ? "Depuis plus de deux décennies, L'Atelier du Chef incarne l'excellence gastronomique française. Notre passion pour les produits d'exception et notre respect des traditions culinaires nous poussent à créer des expériences uniques, où chaque plat raconte une histoire."
+                  : "For over two decades, The Chef's Workshop has embodied French gastronomic excellence. Our passion for exceptional products and respect for culinary traditions drive us to create unique experiences, where each dish tells a story."
+                }
               </p>
               <p className="text-lg leading-relaxed text-black/80 font-light animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-                Dans notre atelier, la modernité rencontre la tradition. Nos chefs, formés aux techniques 
-                classiques, réinventent constamment notre héritage culinaire pour offrir une expérience 
-                contemporaine tout en préservant l'authenticité de nos racines.
+                {lang === 'fr'
+                  ? "Dans notre atelier, la modernité rencontre la tradition. Nos chefs, formés aux techniques classiques, réinventent constamment notre héritage culinaire pour offrir une expérience contemporaine tout en préservant l'authenticité de nos racines."
+                  : "In our workshop, modernity meets tradition. Our chefs, trained in classical techniques, constantly reinvent our culinary heritage to offer a contemporary experience while preserving the authenticity of our roots."
+                }
               </p>
               <button 
                 onClick={() => scrollToSection('menu')}
                 className="inline-block text-black font-light tracking-wider border-b border-black/20 hover:border-black/40 transition-all duration-300 animate-fade-in-up hover:scale-105 transform cursor-pointer" style={{ animationDelay: '0.6s' }}
               >
-                À PROPOS →
+                {lang === 'fr' ? 'À PROPOS →' : 'ABOUT →'}
               </button>
             </div>
 
@@ -447,7 +451,7 @@ export default function RestaurantDemo() {
         <div className="absolute inset-0 bg-black/25" />
         <div className="absolute inset-0 flex items-center justify-center px-4">
           <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-white tracking-tight text-center">
-            Une expérience inédite
+            {lang === 'fr' ? 'Une expérience inédite' : 'An Unprecedented Experience'}
           </h2>
         </div>
       </section>
@@ -476,10 +480,12 @@ export default function RestaurantDemo() {
             <div className="order-1 lg:order-2 space-y-8 sm:space-y-10">
               <div className="space-y-4">
                 <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl tracking-tight text-black animate-fade-in-up">
-                Les entrées
+                {lang === 'fr' ? 'Les entrées' : 'Starters'}
               </h2>
                 <div className="w-20 sm:w-24 h-px bg-gradient-to-r from-stone-400 via-stone-600 to-stone-800"></div>
-                <p className="text-sm sm:text-base text-stone-600 font-light italic">Découvrez nos créations d'exception</p>
+                <p className="text-sm sm:text-base text-stone-600 font-light italic">
+                  {lang === 'fr' ? 'Découvrez nos créations d\'exception' : 'Discover our exceptional creations'}
+                </p>
               </div>
               
               <div className="space-y-4 sm:space-y-5">
@@ -488,10 +494,14 @@ export default function RestaurantDemo() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">Caviar d'Aquitaine</h3>
+                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">
+                          {lang === 'fr' ? 'Caviar d\'Aquitaine' : 'Aquitaine Caviar'}
+                        </h3>
                         <div className="w-2 h-2 bg-stone-400 rounded-full group-hover:bg-stone-600 transition-all duration-300 flex-shrink-0"></div>
                       </div>
-                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">Blini, crème fraîche, œufs de caille</p>
+                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">
+                        {lang === 'fr' ? 'Blini, crème fraîche, œufs de caille' : 'Blini, crème fraîche, quail eggs'}
+                      </p>
                     </div>
                     <div className="ml-4 sm:ml-6 flex-shrink-0">
                       <span className="font-serif text-lg sm:text-xl text-stone-800 group-hover:text-stone-600 transition-all duration-300">€45</span>
@@ -504,10 +514,14 @@ export default function RestaurantDemo() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">Homard Bleu de Bretagne</h3>
+                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">
+                          {lang === 'fr' ? 'Homard Bleu de Bretagne' : 'Brittany Blue Lobster'}
+                        </h3>
                         <div className="w-2 h-2 bg-stone-400 rounded-full group-hover:bg-stone-600 transition-all duration-300 flex-shrink-0"></div>
                       </div>
-                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">Sauce américaine, légumes glacés</p>
+                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">
+                        {lang === 'fr' ? 'Sauce américaine, légumes glacés' : 'American sauce, glazed vegetables'}
+                      </p>
                     </div>
                     <div className="ml-4 sm:ml-6 flex-shrink-0">
                       <span className="font-serif text-lg sm:text-xl text-stone-800 group-hover:text-stone-600 transition-all duration-300">€38</span>
@@ -520,10 +534,14 @@ export default function RestaurantDemo() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">Foie Gras Mi-Cuit</h3>
+                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">
+                          {lang === 'fr' ? 'Foie Gras Mi-Cuit' : 'Semi-Cooked Foie Gras'}
+                        </h3>
                         <div className="w-2 h-2 bg-stone-400 rounded-full group-hover:bg-stone-600 transition-all duration-300 flex-shrink-0"></div>
                       </div>
-                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">Chutney de figues, pain brioché</p>
+                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">
+                        {lang === 'fr' ? 'Chutney de figues, pain brioché' : 'Fig chutney, brioche bread'}
+                      </p>
                     </div>
                     <div className="ml-4 sm:ml-6 flex-shrink-0">
                       <span className="font-serif text-lg sm:text-xl text-stone-800 group-hover:text-stone-600 transition-all duration-300">€32</span>
@@ -536,10 +554,14 @@ export default function RestaurantDemo() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:scale-105 transition-transform duration-300 truncate">Asperges Vertes</h3>
+                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:scale-105 transition-transform duration-300 truncate">
+                          {lang === 'fr' ? 'Asperges Vertes' : 'Green Asparagus'}
+                        </h3>
                         <div className="w-2 h-2 bg-stone-400 rounded-full group-hover:bg-stone-600 transition-all duration-300 flex-shrink-0"></div>
                       </div>
-                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">Sauce hollandaise, œuf mollet</p>
+                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">
+                        {lang === 'fr' ? 'Sauce hollandaise, œuf mollet' : 'Hollandaise sauce, soft-boiled egg'}
+                      </p>
                     </div>
                     <div className="ml-4 sm:ml-6 flex-shrink-0">
                       <span className="font-serif text-lg sm:text-xl text-stone-800 group-hover:text-stone-600 transition-all duration-300">€28</span>
@@ -553,7 +575,7 @@ export default function RestaurantDemo() {
                   onClick={showPhoneNumber}
                   className="group inline-flex items-center space-x-2 text-black font-light tracking-wider border-b border-black/20 hover:border-black/40 transition-all duration-300 text-sm sm:text-base cursor-pointer"
                 >
-                  <span>RÉSERVER UNE TABLE</span>
+                  <span>{lang === 'fr' ? 'RÉSERVER UNE TABLE' : 'BOOK A TABLE'}</span>
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </button>
               </div>
@@ -570,10 +592,12 @@ export default function RestaurantDemo() {
             <div className="space-y-8 sm:space-y-10">
               <div className="space-y-4">
                 <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl tracking-tight text-black animate-fade-in-up">
-                Les desserts
+                {lang === 'fr' ? 'Les desserts' : 'Desserts'}
               </h2>
                 <div className="w-20 sm:w-24 h-px bg-gradient-to-r from-stone-400 via-stone-600 to-stone-800"></div>
-                <p className="text-sm sm:text-base text-stone-600 font-light italic">Finissez en beauté avec nos créations sucrées</p>
+                <p className="text-sm sm:text-base text-stone-600 font-light italic">
+                  {lang === 'fr' ? 'Finissez en beauté avec nos créations sucrées' : 'Finish beautifully with our sweet creations'}
+                </p>
               </div>
               
               <div className="space-y-4 sm:space-y-5">
@@ -582,10 +606,14 @@ export default function RestaurantDemo() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">Soufflé au Chocolat</h3>
+                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">
+                          {lang === 'fr' ? 'Soufflé au Chocolat' : 'Chocolate Soufflé'}
+                        </h3>
                         <div className="w-2 h-2 bg-stone-400 rounded-full group-hover:bg-stone-600 transition-all duration-300 flex-shrink-0"></div>
                       </div>
-                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">Glace vanille bourbon, coulis framboise</p>
+                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">
+                        {lang === 'fr' ? 'Glace vanille bourbon, coulis framboise' : 'Bourbon vanilla ice cream, raspberry coulis'}
+                      </p>
                     </div>
                     <div className="ml-4 sm:ml-6 flex-shrink-0">
                       <span className="font-serif text-lg sm:text-xl text-stone-800 group-hover:text-stone-600 transition-all duration-300">€18</span>
@@ -598,10 +626,14 @@ export default function RestaurantDemo() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">Tarte Tatin</h3>
+                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">
+                          {lang === 'fr' ? 'Tarte Tatin' : 'Tarte Tatin'}
+                        </h3>
                         <div className="w-2 h-2 bg-stone-400 rounded-full group-hover:bg-stone-600 transition-all duration-300 flex-shrink-0"></div>
                       </div>
-                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">Pommes caramélisées, crème fraîche</p>
+                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">
+                        {lang === 'fr' ? 'Pommes caramélisées, crème fraîche' : 'Caramelized apples, crème fraîche'}
+                      </p>
                     </div>
                     <div className="ml-4 sm:ml-6 flex-shrink-0">
                       <span className="font-serif text-lg sm:text-xl text-stone-800 group-hover:text-stone-600 transition-all duration-300">€16</span>
@@ -614,10 +646,14 @@ export default function RestaurantDemo() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">Crème Brûlée</h3>
+                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">
+                          {lang === 'fr' ? 'Crème Brûlée' : 'Crème Brûlée'}
+                        </h3>
                         <div className="w-2 h-2 bg-stone-400 rounded-full group-hover:bg-stone-600 transition-all duration-300 flex-shrink-0"></div>
                       </div>
-                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">Vanille de Madagascar, sucre caramélisé</p>
+                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">
+                        {lang === 'fr' ? 'Vanille de Madagascar, sucre caramélisé' : 'Madagascar vanilla, caramelized sugar'}
+                      </p>
                     </div>
                     <div className="ml-4 sm:ml-6 flex-shrink-0">
                       <span className="font-serif text-lg sm:text-xl text-stone-800 group-hover:text-stone-600 transition-all duration-300">€14</span>
@@ -630,10 +666,14 @@ export default function RestaurantDemo() {
                   <div className="flex justify-between items-start">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">Millefeuille</h3>
+                        <h3 className="font-serif text-lg sm:text-xl text-stone-900 group-hover:text-stone-700 transition-all duration-300 truncate">
+                          {lang === 'fr' ? 'Millefeuille' : 'Millefeuille'}
+                        </h3>
                         <div className="w-2 h-2 bg-stone-400 rounded-full group-hover:bg-stone-600 transition-all duration-300 flex-shrink-0"></div>
                       </div>
-                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">Pâte feuilletée, crème pâtissière</p>
+                      <p className="text-sm sm:text-base text-stone-600 font-light leading-relaxed">
+                        {lang === 'fr' ? 'Pâte feuilletée, crème pâtissière' : 'Puff pastry, pastry cream'}
+                      </p>
                     </div>
                     <div className="ml-4 sm:ml-6 flex-shrink-0">
                       <span className="font-serif text-lg sm:text-xl text-stone-800 group-hover:text-stone-600 transition-all duration-300">€17</span>
@@ -647,7 +687,7 @@ export default function RestaurantDemo() {
                   onClick={showPhoneNumber}
                   className="group inline-flex items-center space-x-2 text-black font-light tracking-wider border-b border-black/20 hover:border-black/40 transition-all duration-300 text-sm sm:text-base cursor-pointer"
                 >
-                  <span>RÉSERVER UNE TABLE</span>
+                  <span>{lang === 'fr' ? 'RÉSERVER UNE TABLE' : 'BOOK A TABLE'}</span>
                   <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
                 </button>
               </div>
@@ -678,21 +718,62 @@ export default function RestaurantDemo() {
         </div>
       </section>
 
+      {/* CTA Final - Conversion après exploration de la démo */}
+      <section className="py-20 bg-gradient-to-br from-[#1A1A1A] via-[#2D2D2D] to-[#1A1A1A] text-white">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
+              {lang === 'fr' 
+                ? 'Prêt à construire un système similaire pour votre business ?'
+                : 'Ready to build a similar system for your business?'
+              }
+            </h2>
+            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+              {lang === 'fr'
+                ? 'Transformons votre site en machine de conversion. Réservez un audit stratégique gratuit.'
+                : 'Transform your website into a conversion machine. Book a free strategic audit.'
+              }
+            </p>
+            <a
+              href="/briefing"
+              className="inline-flex items-center justify-center bg-[#2D5A27] text-white px-10 py-5 rounded-lg transition-all duration-300 text-base md:text-lg font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(45,90,39,0.6)] hover:scale-105 transform uppercase tracking-wider"
+            >
+              <span className="relative z-10">
+                {lang === 'fr'
+                  ? '[ RÉSERVER MON AUDIT GRATUIT ]'
+                  : '[ BOOK MY FREE AUDIT ]'
+                }
+              </span>
+            </a>
+            <p className="text-sm text-gray-400 mt-6">
+              {lang === 'fr'
+                ? '✓ 45 minutes • ✓ Sans engagement • ✓ Résultats concrets'
+                : '✓ 45 minutes • ✓ No commitment • ✓ Concrete results'
+              }
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer id="contact" className="py-16 bg-white border-t border-black/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-serif text-xl text-black mb-4">Adresse</h3>
+              <h3 className="font-serif text-xl text-black mb-4">
+                {lang === 'fr' ? 'Adresse' : 'Address'}
+              </h3>
               <p className="text-black/70 font-light">
                 15 Rue du Marais<br />
                 75004 Paris, France
               </p>
             </div>
             <div>
-              <h3 className="font-serif text-xl text-black mb-4">Horaires</h3>
+              <h3 className="font-serif text-xl text-black mb-4">
+                {lang === 'fr' ? 'Horaires' : 'Hours'}
+              </h3>
               <p className="text-black/70 font-light">
-                Mardi - Samedi<br />
+                {lang === 'fr' ? 'Mardi - Samedi' : 'Tuesday - Saturday'}<br />
                 19h00 - 23h00
               </p>
             </div>
@@ -704,7 +785,9 @@ export default function RestaurantDemo() {
               </p>
             </div>
             <div>
-              <h3 className="font-serif text-xl text-black mb-4">Suivez-nous</h3>
+              <h3 className="font-serif text-xl text-black mb-4">
+                {lang === 'fr' ? 'Suivez-nous' : 'Follow us'}
+              </h3>
               <a 
                 href="#" 
                 className="text-black/70 hover:text-black transition-colors duration-300 font-light"

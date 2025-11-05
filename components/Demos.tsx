@@ -19,7 +19,7 @@ export default function Demos() {
       description: t('demos.restaurant.description'),
       features: t('demos.restaurant.features'),
       image: '/previews/restopre.jpg',
-      demoUrl: '/demos/restaurant',
+      caseStudyUrl: '/etude-de-cas/restaurant',
       device: 'macbook' as const
     },
     {
@@ -28,7 +28,7 @@ export default function Demos() {
       description: t('demos.hotel.description'),
       features: t('demos.hotel.features'),
       image: '/previews/aurorabay.jpg',
-      demoUrl: '/demos/hotel',
+      caseStudyUrl: '/etude-de-cas/hotel',
       device: 'ipad' as const
     }
   ];
@@ -45,51 +45,52 @@ export default function Demos() {
           </p>
         </div>
 
-        {/* Responsive grid with equal heights */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {demos.map((demo) => (
-            <div key={demo.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 h-full flex flex-col">
-              {/* Device mockup */}
-              <div className="p-6 pb-4">
-                <div className="min-h-[200px] flex items-start justify-center">
-                  <DeviceFrame type={demo.device}>
-                    {demo.image}
-                  </DeviceFrame>
-                </div>
+        {/* TODO: Pour chaque projet, ajouter 1-2 lignes décrivant le PROBLEME et le RESULTAT obtenu (ex: +30% de conversion). */}
+        
+        {/* Grille visuelle épurée et asymétrique */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {demos.map((demo, index) => (
+            <Link 
+              key={demo.id} 
+              href={demo.caseStudyUrl}
+              className="group relative bg-white rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] transform"
+              style={{
+                gridColumn: index === 0 ? 'span 1' : 'span 1'
+              }}
+            >
+              {/* Grande image */}
+              <div className="relative h-[400px] overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
+                <DeviceFrame type={demo.device}>
+                  {demo.image}
+                </DeviceFrame>
               </div>
               
-              {/* Content section */}
-              <div className="p-6 pt-0 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3">
+              {/* Contenu minimal superposé */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 z-20">
+                {/* Tag de résultat */}
+                <div className="inline-block mb-4">
+                  <span className="bg-[#2D5A27] text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
+                    {demo.id === 'restaurant' ? '+42% CONVERSION' : 'AUTOMATION'}
+                  </span>
+                </div>
+                
+                {/* Nom du projet */}
+                <h3 className="text-3xl font-bold text-white mb-2 group-hover:text-[#2D5A27] transition-colors">
                   {demo.title}
                 </h3>
-                <p className="text-[#4A4A4A] mb-4">
+                
+                {/* Description courte */}
+                <p className="text-white/90 text-sm">
                   {demo.description}
                 </p>
-                <ul className="space-y-2 mb-6">
-                  {Array.isArray(demo.features) ? demo.features.map((feature, index) => (
-                    <li key={index} className="flex items-center text-sm text-[#666]">
-                      <span className="w-2 h-2 bg-[#2D5A27] rounded-full mr-3"></span>
-                      {feature}
-                    </li>
-                  )) : (
-                    <li className="text-sm text-[#666]">Features non disponibles</li>
-                  )}
-                </ul>
-                
-                {/* CTA button */}
-                <div className="mt-auto">
-                  <Link
-                    href={demo.demoUrl}
-                    className="inline-flex items-center justify-center bg-[#2D5A27] text-white px-6 py-3 rounded-lg hover:bg-[#1F3D1C] transition-colors duration-150 font-semibold hover:translate-y-0.5 transition-transform"
-                    aria-label={`View ${demo.title} demo`}
-                  >
-                    {t('demos.viewDemo')}
-                    <ArrowRight size={20} className="ml-2" />
-                  </Link>
-                </div>
               </div>
-            </div>
+
+              {/* Flèche d'action au hover */}
+              <div className="absolute top-6 right-6 z-20 bg-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <ArrowRight size={24} className="text-[#2D5A27]" />
+              </div>
+            </Link>
           ))}
         </div>
       </div>

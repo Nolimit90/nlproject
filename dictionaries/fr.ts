@@ -18,8 +18,8 @@ export const fr = {
   
   // Demos Section
   demos: {
-    title: "Réalisations",
-    subtitle: "Parcourez mes derniers projets et découvrez comment je transforme les idées en sites web qui convertissent.",
+    title: "Nos Systèmes en Action",
+    subtitle: "Découvrez comment nous transformons les sites web en machines à convertir avec stratégie, design et automatisation.",
     restaurant: {
       title: "Restaurant Gastronomique",
       description: "Site web élégant pour restaurant haut de gamme",
@@ -27,6 +27,15 @@ export const fr = {
         "Design épuré et moderne",
         "Navigation intuitive",
         "Mise en page responsive"
+      ]
+    },
+    hotel: {
+      title: "Hôtel de Luxe",
+      description: "Expérience de réservation premium pour hôtel haut de gamme",
+      features: [
+        "Interface de réservation fluide",
+        "Galerie visuelle immersive",
+        "Optimisé pour la conversion"
       ]
     },
     ecommerce: {
@@ -53,18 +62,23 @@ export const fr = {
   
   // Benefits Section
   benefits: {
-    title: "Pourquoi me choisir",
-    mobile: {
-      title: "Mobile-first & responsive",
-      description: "Chaque site web est construit mobile-first, garantissant une performance parfaite sur tous les appareils."
+    title: "Notre Méthode : Le Système en 4 Paliers",
+    subtitle: "Une approche stratégique qui transforme votre site en machine de conversion rentable.",
+    architecture: {
+      title: "01. Architecture (Stratégie)",
+      description: "Nous déconstruisons votre business pour architecturer un message clair et un funnel de conversion qui transforme les visiteurs en clients."
     },
-    design: {
-      title: "Design unique & moderne",
-      description: "Des designs personnalisés qui reflètent l'identité de votre marque et se démarquent de la concurrence."
+    engineering: {
+      title: "02. Ingénierie (Design & Code)",
+      description: "Nous construisons une expérience utilisateur sans friction, rapide et intuitive, où chaque élément de design sert l'objectif de conversion."
     },
-    conversion: {
-      title: "Centré conversion & SEO-friendly",
-      description: "Des mises en page stratégiques et un code optimisé qui stimulent les conversions et se classent bien dans les recherches."
+    automation: {
+      title: "03. Automation (Liberté)",
+      description: "Nous déployons des systèmes de tracking et de relance qui travaillent pour vous 24/7, nourrissant vos prospects et maximisant votre revenu."
+    },
+    ecosystem: {
+      title: "04. Écosystème (Applications)",
+      description: "Votre système ne s'arrête pas à votre site. Nous le prolongeons dans la poche de vos clients avec des applications natives (iOS) qui créent une expérience immersive et fidélisent à long terme."
     }
   },
   

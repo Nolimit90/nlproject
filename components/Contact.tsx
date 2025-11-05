@@ -12,10 +12,21 @@ export default function Contact() {
     telephone: '',
     clientType: '',
     pack: '',
-    message: ''
+    message: '',
+    businessObjective: '',
+    existingWebsite: '',
+    budget: '',
+    // 🍯 Champs de sécurité (anti-bot)
+    _website: '', // Honeypot: doit rester vide
+    _submit_time: '', // Timestamp de début
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
+
+  // 🔐 Initialiser le timestamp au montage du composant
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, _submit_time: Date.now().toString() }));
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -51,8 +62,8 @@ export default function Contact() {
     e.preventDefault();
     
     // Validation
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message || !formData.clientType) {
-      alert(lang === 'fr' ? 'Veuillez remplir tous les champs obligatoires' : 'Please fill in all required fields');
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.clientType || !formData.businessObjective || !formData.budget) {
+      alert(lang === 'fr' ? 'Veuillez remplir tous les champs obligatoires (*)' : 'Please fill in all required fields (*)');
       return;
     }
     
@@ -62,7 +73,10 @@ export default function Contact() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          lang: lang // Ajouter la langue
+        }),
       });
       
       const result = await response.json();
@@ -76,10 +90,16 @@ export default function Contact() {
           telephone: '',
           clientType: '',
           pack: '',
-          message: ''
+          message: '',
+          businessObjective: '',
+          existingWebsite: '',
+          budget: '',
+          _website: '',
+          _submit_time: Date.now().toString(),
         });
       } else {
-        alert(lang === 'fr' ? 'Erreur: ' + (result.error || 'Erreur inconnue') : 'Error: ' + (result.error || 'Unknown error'));
+        const errorMessage = result.error || (lang === 'fr' ? 'Erreur inconnue' : 'Unknown error');
+        alert(lang === 'fr' ? 'Erreur: ' + errorMessage : 'Error: ' + errorMessage);
       }
     } catch (error) {
       alert(lang === 'fr' ? 'Erreur de connexion' : 'Connection error');
@@ -91,50 +111,68 @@ export default function Contact() {
   // Traductions
   const translations = {
     fr: {
-      title: 'Démarrons votre projet',
-      subtitle: 'Racontez-moi votre vision et créons ensemble quelque chose d\'extraordinaire',
+      title: 'Briefing de Projet',
+      subtitle: 'Ce formulaire est pour les entrepreneurs prêts à investir dans un système. Remplissez-le pour que nous puissions évaluer si nous sommes le bon partenaire.',
       personalInfo: 'Vos informations',
       firstName: 'Prénom',
       lastName: 'Nom',
       email: 'Email',
       phone: 'Téléphone',
-      projectType: 'Type de projet',
-      youAre: 'Vous êtes',
-      chooseProfile: 'Choisissez votre profil',
-      company: 'Entreprise établie',
-      freelance: 'Professionnel indépendant',
-      startup: 'Startup innovante',
-      profileHelp: 'Sélectionnez le profil qui correspond le mieux à votre situation',
-      yourProject: 'Votre projet',
-      describeProject: 'Décrivez votre projet',
-      projectPlaceholder: 'Parlez-moi de votre vision, vos objectifs, votre public cible... Plus vous me donnez de détails, mieux je pourrai vous accompagner !',
-      projectHelp: 'Décrivez vos besoins, objectifs et contraintes pour que je puisse vous proposer la meilleure solution',
-      submit: 'Lancer mon projet',
+      projectType: 'Étape 1 : Votre Défi Principal',
+      youAre: 'Quel est votre plus grand défi actuel ?',
+      chooseProfile: 'Sélectionnez votre défi principal',
+      newProject: 'Lancement d\'un nouveau projet / première version',
+      company: 'Manque de conversions / leads',
+      freelance: 'Site non professionnel / crédibilité',
+      startup: 'Absence de système automatisé',
+      other: 'Autre',
+      profileHelp: 'Identifiez le défi qui bloque actuellement votre croissance',
+      yourProject: 'Étape 2 : Votre Projet',
+      businessObjective: 'Quel est l\'objectif business mesurable de ce projet ?',
+      businessObjectivePlaceholder: 'Ex: +30% de ventes, 50 leads/mois, automatiser X...',
+      existingWebsite: 'Avez-vous un site web existant ?',
+      existingWebsitePlaceholder: 'https://www.votresite.com',
+      budget: 'Quel est votre budget approximatif pour ce système ?',
+      chooseBudget: 'Sélectionnez une fourchette',
+      budget1: '< 3000€',
+      budget2: '3000€ - 5000€',
+      budget3: '5000€ - 10 000€',
+      budget4: '+10 000€',
+      submit: '[ ENVOYER MON BRIEFING ]',
       submitting: 'Envoi en cours...',
       thankYou: 'Merci pour votre message !',
       thankYouMessage: 'J\'ai bien reçu votre demande et je vous répondrai dans les plus brefs délais.',
       close: 'Fermer'
     },
     en: {
-      title: 'Let\'s start your project',
-      subtitle: 'Tell me about your vision and let\'s create something extraordinary together',
+      title: 'Project Briefing',
+      subtitle: 'This form is for entrepreneurs ready to invest in a system. Fill it out so we can assess if we\'re the right partner.',
       personalInfo: 'Your information',
       firstName: 'First name',
       lastName: 'Last name',
       email: 'Email',
       phone: 'Phone',
-      projectType: 'Project type',
-      youAre: 'You are',
-      chooseProfile: 'Choose your profile',
-      company: 'Established company',
-      freelance: 'Independent professional',
-      startup: 'Innovative startup',
-      profileHelp: 'Select the profile that best matches your situation',
-      yourProject: 'Your project',
-      describeProject: 'Describe your project',
-      projectPlaceholder: 'Tell me about your vision, your objectives, your target audience... The more details you give me, the better I can help you!',
-      projectHelp: 'Describe your needs, objectives and constraints so I can propose the best solution',
-      submit: 'Launch my project',
+      projectType: 'Step 1: Your Main Challenge',
+      youAre: 'What is your biggest current challenge?',
+      chooseProfile: 'Select your main challenge',
+      newProject: 'Launching a new project / first version',
+      company: 'Lack of conversions / leads',
+      freelance: 'Unprofessional site / credibility',
+      startup: 'No automated system',
+      other: 'Other',
+      profileHelp: 'Identify the challenge currently blocking your growth',
+      yourProject: 'Step 2: Your Project',
+      businessObjective: 'What is the measurable business objective of this project?',
+      businessObjectivePlaceholder: 'Ex: +30% sales, 50 leads/month, automate X...',
+      existingWebsite: 'Do you have an existing website?',
+      existingWebsitePlaceholder: 'https://www.yourwebsite.com',
+      budget: 'What is your approximate budget for this system?',
+      chooseBudget: 'Select a range',
+      budget1: '< €3000',
+      budget2: '€3000 - €5000',
+      budget3: '€5000 - €10,000',
+      budget4: '+€10,000',
+      submit: '[ SEND MY BRIEFING ]',
       submitting: 'Sending...',
       thankYou: 'Thank you for your message!',
       thankYouMessage: 'I have received your request and will get back to you as soon as possible.',
@@ -146,24 +184,47 @@ export default function Contact() {
 
   if (showThankYou) {
     return (
-      <section id="contact" className="py-24 bg-gradient-to-br from-[#FAF6F1] to-[#F5F0E8]">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center">
-            <div className="bg-white rounded-2xl shadow-xl p-12 border border-gray-100">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h2 className="text-3xl font-bold text-[#1A1A1A] mb-4">{t.thankYou}</h2>
-              <p className="text-lg text-[#4A4A4A] mb-8 leading-relaxed">{t.thankYouMessage}</p>
-              <button
-                onClick={() => setShowThankYou(false)}
-                className="bg-[#0FA47A] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#0D8A66] transition-colors duration-200"
-              >
-                {t.close}
-              </button>
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1A1A1A] via-[#2D2D2D] to-[#1A1A1A] py-32">
+        {/* Effet de fond */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#2D5A27] rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#2D5A27] rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            {/* Icône de succès */}
+            <div className="w-24 h-24 bg-[#2D5A27] rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl animate-pulse">
+              <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+              </svg>
             </div>
+
+            {/* Titre */}
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+              {t.thankYou}
+            </h1>
+
+            {/* Message */}
+            <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
+              {t.thankYouMessage}
+            </p>
+
+            {/* Note de réassurance */}
+            <p className="text-sm text-gray-400 mb-12">
+              {lang === 'fr'
+                ? '✓ Réponse sous 24h • ✓ Analyse personnalisée • ✓ Sans engagement'
+                : '✓ Response within 24h • ✓ Personalized analysis • ✓ No commitment'
+              }
+            </p>
+
+            {/* Bouton de fermeture */}
+            <button
+              onClick={() => setShowThankYou(false)}
+              className="inline-flex items-center justify-center bg-[#2D5A27] text-white px-10 py-4 rounded-lg transition-all duration-300 text-lg font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(45,90,39,0.6)] hover:scale-105 transform uppercase tracking-wider"
+            >
+              {t.close}
+            </button>
           </div>
         </div>
       </section>
@@ -171,7 +232,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-br from-[#FAF6F1] to-[#F5F0E8]">
+    <section className="py-32 min-h-screen bg-gradient-to-br from-[#FAF6F1] to-[#F5F0E8]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-[#1A1A1A] mb-6">
@@ -259,7 +320,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Type de client (seulement) */}
+            {/* Étape 1 : Défi Principal */}
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-[#1A1A1A] mb-6 pb-2 border-b border-gray-200">
                 {t.projectType}
@@ -279,9 +340,11 @@ export default function Contact() {
                     disabled={isSubmitting}
                   >
                     <option value="">{t.chooseProfile}</option>
+                    <option value="NewProject">{t.newProject}</option>
                     <option value="Company">{t.company}</option>
                     <option value="Freelance">{t.freelance}</option>
                     <option value="Startup">{t.startup}</option>
+                    <option value="Other">{t.other}</option>
                   </select>
                   <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -295,31 +358,97 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Message */}
+            {/* Étape 2 : Votre Projet */}
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-[#1A1A1A] mb-6 pb-2 border-b border-gray-200">
                 {t.yourProject}
               </h3>
+              
+              <div className="space-y-6">
+                {/* Objectif Business */}
               <div className="space-y-2">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
-                  {t.describeProject} *
+                  <label htmlFor="businessObjective" className="block text-sm font-medium text-gray-700">
+                    {t.businessObjective} *
                 </label>
-                <textarea
-                  id="message"
-                  name="message"
+                  <input
+                    type="text"
+                    id="businessObjective"
+                    name="businessObjective"
                   required
-                  rows={6}
-                  value={formData.message}
+                    value={formData.businessObjective}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
+                    placeholder={t.businessObjectivePlaceholder}
+                    disabled={isSubmitting}
+                  />
+                </div>
+
+                {/* Site Web Existant */}
+                <div className="space-y-2">
+                  <label htmlFor="existingWebsite" className="block text-sm font-medium text-gray-700">
+                    {t.existingWebsite}
+                  </label>
+                  <input
+                    type="url"
+                    id="existingWebsite"
+                    name="existingWebsite"
+                    value={formData.existingWebsite}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white resize-none"
-                  placeholder={t.projectPlaceholder}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
+                    placeholder={t.existingWebsitePlaceholder}
                   disabled={isSubmitting}
                 />
-                <p className="text-xs text-gray-500">
-                  {t.projectHelp}
-                </p>
+                </div>
+
+                {/* Budget */}
+                <div className="space-y-2">
+                  <label htmlFor="budget" className="block text-sm font-medium text-gray-700">
+                    {t.budget} *
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="budget"
+                      name="budget"
+                      required
+                      value={formData.budget}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white appearance-none cursor-pointer"
+                      disabled={isSubmitting}
+                    >
+                      <option value="" disabled>{t.chooseBudget}</option>
+                      <option value="< 3000€">{t.budget1}</option>
+                      <option value="3000€ - 5000€">{t.budget2}</option>
+                      <option value="5000€ - 10 000€">{t.budget3}</option>
+                      <option value="+10 000€">{t.budget4}</option>
+                    </select>
+                    <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+
+            {/* 🍯 HONEYPOT: Champ invisible pour piéger les bots */}
+            <input
+              type="text"
+              name="_website"
+              value={formData._website}
+              onChange={handleInputChange}
+              tabIndex={-1}
+              autoComplete="off"
+              style={{
+                position: 'absolute',
+                left: '-9999px',
+                width: '1px',
+                height: '1px',
+                opacity: 0,
+                pointerEvents: 'none',
+              }}
+              aria-hidden="true"
+            />
 
             {/* Bouton de soumission */}
             <div className="text-center">

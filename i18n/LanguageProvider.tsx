@@ -22,9 +22,8 @@ export function useI18n() {
 const dictionaries = {
   en: {
     nav: {
-      demos: "Demos",
-      why: "Why",
-      about: "About",
+      systems: "Systems",
+      method: "Method",
       contact: "Contact",
       startProject: "Start a project"
     },
@@ -35,8 +34,8 @@ const dictionaries = {
       contactMe: "Contact me"
     },
     demos: {
-      title: "Works",
-      subtitle: "Browse through my latest projects and see how I transform ideas into converting websites.",
+      title: "Our Systems in Action",
+      subtitle: "Discover how we transform websites into conversion machines with strategy, design, and automation.",
       restaurant: {
         title: "Gastronomic Restaurant",
         description: "Elegant website for high-end restaurant",
@@ -73,12 +72,12 @@ const dictionaries = {
         ]
       },
       hotel: {
-        title: "Hotel Aurora Bay",
-        description: "Polished sites that build trust.",
+        title: "Luxury Hotel",
+        description: "Premium booking experience for high-end hotel",
         features: [
-          "Professional design",
-          "Well-structured sections",
-          "Performance optimized"
+          "Smooth booking interface",
+          "Immersive visual gallery",
+          "Conversion optimized"
         ]
       },
       corporate: {
@@ -94,18 +93,23 @@ const dictionaries = {
       details: "Details"
     },
     benefits: {
-      title: "Why choose me",
-      mobile: {
-        title: "Mobile-first & responsive",
-        description: "Every website is built mobile-first, ensuring perfect performance across all devices."
+      title: "Our Method: The 4-Tier System",
+      subtitle: "A strategic approach that transforms your website into a profitable conversion machine.",
+      architecture: {
+        title: "01. Architecture (Strategy)",
+        description: "We deconstruct your business to architect a clear message and conversion funnel that transforms visitors into clients."
       },
-      design: {
-        title: "Unique & modern design",
-        description: "Custom designs that reflect your brand identity and stand out from the competition."
+      engineering: {
+        title: "02. Engineering (Design & Code)",
+        description: "We build a frictionless, fast, and intuitive user experience where every design element serves the conversion objective."
       },
-      conversion: {
-        title: "Conversion-focused & SEO-friendly",
-        description: "Strategic layouts and optimized code that drive conversions and rank well in search."
+      automation: {
+        title: "03. Automation (Freedom)",
+        description: "We deploy tracking and follow-up systems that work for you 24/7, nurturing your prospects and maximizing your revenue."
+      },
+      ecosystem: {
+        title: "04. Ecosystem (Applications)",
+        description: "Your system doesn't stop at your website. We extend it into your customers' pockets with native iOS applications that create an immersive experience and build long-term loyalty."
       }
     },
     about: {
@@ -138,9 +142,8 @@ const dictionaries = {
   },
   fr: {
     nav: {
-      demos: "Demos",
-      why: "Pourquoi",
-      about: "À propos",
+      systems: "Systèmes",
+      method: "Méthode",
       contact: "Contact",
       startProject: "Démarrer un projet"
     },
@@ -151,8 +154,8 @@ const dictionaries = {
       contactMe: "Me contacter"
     },
     demos: {
-      title: "Réalisations",
-      subtitle: "Parcourez mes derniers projets et découvrez comment je transforme les idées en sites web qui convertissent.",
+      title: "Nos Systèmes en Action",
+      subtitle: "Découvrez comment nous transformons les sites web en machines à convertir avec stratégie, design et automatisation.",
       restaurant: {
         title: "Restaurant Gastronomique",
         description: "Site web élégant pour restaurant haut de gamme",
@@ -189,12 +192,12 @@ const dictionaries = {
         ]
       },
       hotel: {
-        title: "Hotel Aurora Bay",
-        description: "Sites soignés qui inspirent confiance.",
+        title: "Hôtel de Luxe",
+        description: "Expérience de réservation premium pour hôtel haut de gamme",
         features: [
-          "Design professionnel",
-          "Sections bien structurées",
-          "Performance optimisée"
+          "Interface de réservation fluide",
+          "Galerie visuelle immersive",
+          "Optimisé pour la conversion"
         ]
       },
       corporate: {
@@ -210,18 +213,23 @@ const dictionaries = {
       details: "Détails"
     },
     benefits: {
-      title: "Pourquoi me choisir",
-      mobile: {
-        title: "Mobile-first & responsive",
-        description: "Chaque site web est construit mobile-first, garantissant une performance parfaite sur tous les appareils."
+      title: "Notre Méthode : Le Système en 4 Paliers",
+      subtitle: "Une approche stratégique qui transforme votre site en machine de conversion rentable.",
+      architecture: {
+        title: "01. Architecture (Stratégie)",
+        description: "Nous déconstruisons votre business pour architecturer un message clair et un funnel de conversion qui transforme les visiteurs en clients."
       },
-      design: {
-        title: "Design unique & moderne",
-        description: "Des designs personnalisés qui reflètent l'identité de votre marque et se démarquent de la concurrence."
+      engineering: {
+        title: "02. Ingénierie (Design & Code)",
+        description: "Nous construisons une expérience utilisateur sans friction, rapide et intuitive, où chaque élément de design sert l'objectif de conversion."
       },
-      conversion: {
-        title: "Centré conversion & SEO-friendly",
-        description: "Des mises en page stratégiques et un code optimisé qui stimulent les conversions et se classent bien dans les recherches."
+      automation: {
+        title: "03. Automation (Liberté)",
+        description: "Nous déployons des systèmes de tracking et de relance qui travaillent pour vous 24/7, nourrissant vos prospects et maximisant votre revenu."
+      },
+      ecosystem: {
+        title: "04. Écosystème (Applications)",
+        description: "Votre système ne s'arrête pas à votre site. Nous le prolongeons dans la poche de vos clients avec des applications natives (iOS) qui créent une expérience immersive et fidélisent à long terme."
       }
     },
     about: {

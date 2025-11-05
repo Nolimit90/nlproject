@@ -17,10 +17,8 @@ export default function Header() {
   const pathname = usePathname();
 
   const navLinks = [
-    { href: '/#demos', label: lang === 'fr' ? 'Démos' : 'Demos' },
-    { href: '/#benefits', label: lang === 'fr' ? 'Pourquoi me choisir' : 'Why choose me' },
-    { href: '/#about', label: lang === 'fr' ? 'À propos' : 'About' },
-    { href: '/#contact', label: lang === 'fr' ? 'Contact' : 'Contact' }
+    { href: '/#demos', label: lang === 'fr' ? 'Systèmes' : 'Systems' },
+    { href: '/#method', label: lang === 'fr' ? 'Méthode' : 'Method' }
   ];
 
   // Gestion du scroll pour l'ombre
@@ -43,8 +41,8 @@ export default function Header() {
 
 
 
-  // Ne pas afficher le header sur les pages de démo (APRÈS tous les Hooks)
-  if (pathname?.startsWith('/demo/')) {
+  // Ne pas afficher le header sur les pages de démo et audit-systeme (APRÈS tous les Hooks)
+  if (pathname?.startsWith('/demo/') || pathname === '/audit-systeme') {
     return null;
   }
 

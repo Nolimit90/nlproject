@@ -18,10 +18,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
   const { lang } = useI18n();
 
   const navLinks = [
-    { href: '/#demos', label: lang === 'fr' ? 'Démos' : 'Demos' },
-    { href: '/#benefits', label: lang === 'fr' ? 'Pourquoi me choisir' : 'Why choose me' },
-    { href: '/#about', label: lang === 'fr' ? 'À propos' : 'About' },
-    { href: '/#contact', label: lang === 'fr' ? 'Contact' : 'Contact' }
+    { href: '/#demos', label: lang === 'fr' ? 'Systèmes' : 'Systems' },
+    { href: '/#method', label: lang === 'fr' ? 'Méthode' : 'Method' }
   ];
 
   // Fermer le menu avec Escape

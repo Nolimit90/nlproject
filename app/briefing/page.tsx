@@ -1,10 +1,19 @@
 import Contact from '@/components/Contact';
 
 export const metadata = {
-  title: 'Contact - Briefing de Projet | NL Project',
+  title: 'Briefing de Projet | NL Project',
   description: 'Formulaire de qualification pour entrepreneurs prêts à investir dans un système de conversion.',
 };
 
-export default function ContactPage() {
+export default function BriefingPage() {
   return <Contact />;
 }
+
+
+
+
+
+
+
+
+

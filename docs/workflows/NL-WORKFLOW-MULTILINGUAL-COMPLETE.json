@@ -1,0 +1,677 @@
+{
+  "name": "NL PROJECT - Multilingual Complete",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "page-audit-pdf",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "b73fbbaa-3f39-4ae1-8cd6-7dbdcea93d9e",
+      "name": "Webhook Page Audit",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [-860, 220],
+      "webhookId": "nl-page-audit"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://rwfmczffqxarxvpnjrhs.supabase.co/rest/v1/emails_leads",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {"name": "Content-Type", "value": "application/json"},
+            {"name": "Prefer", "value": "return=representation"}
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {"name": "email", "value": "={{ $json.body.email }}"},
+            {"name": "source", "value": "page_audit_pdf"}
+          ]
+        },
+        "options": {}
+      },
+      "id": "228cc4d5-44fb-4d2d-91e0-6bf691455383",
+      "name": "Stocker Email Audit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [-660, 220],
+      "credentials": {
+        "supabaseApi": {
+          "id": "hPjnKBr1e5FBOSBj",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "={{ $('Webhook Page Audit').item.json.body.email }}",
+        "subject": "✓ Votre Audit SYSTÈME — NL Project",
+        "html": "<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}.email-wrapper{max-width:600px;margin:0 auto;background:#ffffff}.header{background:#1a1a1a;padding:50px 40px;text-align:center}.logo{font-size:24px;font-weight:300;letter-spacing:8px;color:#ffffff;margin:0}.content{padding:60px 40px}.content h1{font-size:28px;font-weight:300;margin-bottom:30px;color:#1a1a1a}.content p{margin-bottom:20px;color:#4a4a4a;font-size:16px;line-height:1.8}.cta-wrapper{text-align:center;margin:50px 0}.cta-button{display:inline-block;padding:18px 50px;background:#1a1a1a;color:#ffffff!important;text-decoration:none;font-size:15px;font-weight:500;letter-spacing:1px;border-radius:2px;transition:all 0.3s ease}.cta-button:hover{background:#333}.footer{background:#f5f5f5;padding:40px;text-align:center;border-top:1px solid #e0e0e0}.footer p{font-size:13px;color:#888;margin-bottom:10px}.footer-brand{font-size:14px;font-weight:500;letter-spacing:2px;color:#1a1a1a;margin-top:20px}@media only screen and (max-width:600px){.content{padding:40px 30px}.header{padding:40px 30px}}</style></head><body><div class=\"email-wrapper\"><div class=\"header\"><div class=\"logo\">NL PROJECT</div></div><div class=\"content\"><h1>Votre Audit SYSTÈME</h1><p>Comme promis, voici l'analyse complète qui vous permettra d'identifier les points de friction dans votre approche actuelle.</p><p>Cet audit en 10 points vous donnera une vision claire des opportunités d'optimisation pour votre projet digital.</p><div class=\"cta-wrapper\"><a href=\"https://bit.ly/4nzU6Dm\" class=\"cta-button\">TÉLÉCHARGER L'AUDIT</a></div><p style=\"margin-top:50px;font-size:14px;color:#888\">Nous restons à votre disposition pour toute question.</p></div><div class=\"footer\"><p>Ce document vous est envoyé suite à votre demande sur nlproject.site</p><div class=\"footer-brand\">NL PROJECT</div><p style=\"margin-top:5px;font-size:12px\">Systèmes de conversion digitale</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "d92f7f08-49b5-4ab6-8558-595f13936382",
+      "name": "Email PDF Audit",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [-420, 220],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"success\": true}",
+        "options": {}
+      },
+      "id": "9e86b771-e8b9-4cdb-8262-ff663ce7c543",
+      "name": "Response Audit OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [-200, 220]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "formulaire-briefing",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "22ea4036-d934-40c4-aee7-bbe3d47d28d5",
+      "name": "Webhook Briefing",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [-1360, 960],
+      "webhookId": "nl-formulaire-briefing"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\"success\": true, \"message\": \"Briefing reçu\"}",
+        "options": {}
+      },
+      "id": "b5cf302e-7975-44c0-9fa1-65730ba5afa9",
+      "name": "Response Briefing OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [-1160, 960]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://rwfmczffqxarxvpnjrhs.supabase.co/rest/v1/briefings",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "supabaseApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {"name": "Content-Type", "value": "application/json"},
+            {"name": "Prefer", "value": "return=representation"}
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $json.body.firstName }}\",\n  \"last_name\": \"{{ $json.body.lastName }}\",\n  \"email\": \"{{ $json.body.email }}\",\n  \"telephone\": \"{{ $json.body.telephone || '' }}\",\n  \"client_type\": \"{{ $json.body.clientType }}\",\n  \"business_objective\": \"{{ $json.body.businessObjective }}\",\n  \"existing_website\": \"{{ $json.body.existingWebsite || '' }}\",\n  \"budget\": \"{{ $json.body.budget }}\",\n  \"lang\": \"{{ $json.body.lang || 'fr' }}\",\n  \"status\": \"{{ $json.body.budget === '< 3000€' ? 'refused' : $json.body.budget === '+10 000€' ? 'vip' : $json.body.budget === '5000€ - 10 000€' ? 'qualified' : 'standard' }}\",\n  \"source\": \"website_briefing_form\"\n}",
+        "options": {}
+      },
+      "id": "b7127980-2b65-4527-a1f3-b7cb9fe29802",
+      "name": "Stocker Briefing Supabase",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [-960, 960],
+      "credentials": {
+        "supabaseApi": {
+          "id": "hPjnKBr1e5FBOSBj",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict"},
+          "conditions": [
+            {
+              "id": "budget-low",
+              "leftValue": "={{ $('Webhook Briefing').item.json.body.budget }}",
+              "rightValue": "< 3000€",
+              "operator": {"type": "string", "operation": "equals"}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "131d81a4-ef7b-4820-a1aa-95c455ba9b14",
+      "name": "IF Budget < 3000€",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [-760, 960]
+    },
+    {
+      "parameters": {"amount": 15, "unit": "minutes"},
+      "id": "bdd72afb-8bbd-4894-9765-d3b166096fc9",
+      "name": "Wait 15 min",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [-560, 720]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 2},
+          "conditions": [
+            {
+              "id": "lang-refused",
+              "leftValue": "={{ $json.lang }}",
+              "rightValue": "en",
+              "operator": {"type": "string", "operation": "equals"}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-360, 720],
+      "id": "if-lang-refused",
+      "name": "IF Language Refused"
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "={{ $('Webhook Briefing').item.json.body.email }}",
+        "subject": "Following your request — NL Project",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}.email-wrapper{max-width:600px;margin:0 auto;background:#ffffff}.header{background:#1a1a1a;padding:50px 40px;text-align:center}.logo{font-size:24px;font-weight:300;letter-spacing:8px;color:#ffffff;margin:0}.content{padding:60px 40px}.content h1{font-size:28px;font-weight:300;margin-bottom:30px;color:#1a1a1a}.content p{margin-bottom:20px;color:#4a4a4a;font-size:16px;line-height:1.8}.highlight-box{background:#f8f8f8;border-left:3px solid #1a1a1a;padding:30px;margin:40px 0}.highlight-box h2{font-size:18px;font-weight:500;margin-bottom:15px;color:#1a1a1a}.cta-wrapper{text-align:center;margin:50px 0}.cta-button{display:inline-block;padding:18px 50px;background:#1a1a1a;color:#ffffff!important;text-decoration:none;font-size:15px;font-weight:500;letter-spacing:1px;border-radius:2px}.footer{background:#f5f5f5;padding:40px;text-align:center;border-top:1px solid #e0e0e0}.footer p{font-size:13px;color:#888}.footer-brand{font-size:14px;font-weight:500;letter-spacing:2px;color:#1a1a1a;margin-top:20px}@media only screen and (max-width:600px){.content{padding:40px 30px}.header{padding:40px 30px}}</style></head><body><div class=\"email-wrapper\"><div class=\"header\"><div class=\"logo\">NL PROJECT</div></div><div class=\"content\"><h1>{{ $('Webhook Briefing').item.json.body.firstName }},</h1><p>Thank you for taking the time to share the details of your project with us.</p><p>After analyzing your request, I want to be completely transparent with you: our custom conversion systems start from <strong>€3,000</strong>.</p><div class=\"highlight-box\"><h2>An alternative to get started</h2><p style=\"margin:0;color:#4a4a4a;font-size:15px\">Our <strong>10-Point SYSTEM Audit</strong> can be an excellent starting point to structure your digital approach and identify growth opportunities.</p></div><div class=\"cta-wrapper\"><a href=\"https://bit.ly/4nzU6Dm\" class=\"cta-button\">DOWNLOAD THE AUDIT</a></div><p style=\"margin-top:50px;font-size:15px\">We remain available if your project evolves towards a more substantial investment.</p><p style=\"margin-top:30px;font-size:14px;color:#888\">Best regards,<br><strong style=\"color:#1a1a1a\">The NL Project team</strong></p></div><div class=\"footer\"><p>You are receiving this email following your request on nlproject.site</p><div class=\"footer-brand\">NL PROJECT</div><p style=\"margin-top:5px;font-size:12px\">Digital conversion systems</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "email-refused-en",
+      "name": "Email Refused EN",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [-160, 660],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "={{ $('Webhook Briefing').item.json.body.email }}",
+        "subject": "Suite à votre demande — NL Project",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}.email-wrapper{max-width:600px;margin:0 auto;background:#ffffff}.header{background:#1a1a1a;padding:50px 40px;text-align:center}.logo{font-size:24px;font-weight:300;letter-spacing:8px;color:#ffffff;margin:0}.content{padding:60px 40px}.content h1{font-size:28px;font-weight:300;margin-bottom:30px;color:#1a1a1a}.content p{margin-bottom:20px;color:#4a4a4a;font-size:16px;line-height:1.8}.highlight-box{background:#f8f8f8;border-left:3px solid #1a1a1a;padding:30px;margin:40px 0}.highlight-box h2{font-size:18px;font-weight:500;margin-bottom:15px;color:#1a1a1a}.cta-wrapper{text-align:center;margin:50px 0}.cta-button{display:inline-block;padding:18px 50px;background:#1a1a1a;color:#ffffff!important;text-decoration:none;font-size:15px;font-weight:500;letter-spacing:1px;border-radius:2px}.footer{background:#f5f5f5;padding:40px;text-align:center;border-top:1px solid #e0e0e0}.footer p{font-size:13px;color:#888}.footer-brand{font-size:14px;font-weight:500;letter-spacing:2px;color:#1a1a1a;margin-top:20px}@media only screen and (max-width:600px){.content{padding:40px 30px}.header{padding:40px 30px}}</style></head><body><div class=\"email-wrapper\"><div class=\"header\"><div class=\"logo\">NL PROJECT</div></div><div class=\"content\"><h1>{{ $('Webhook Briefing').item.json.body.firstName }},</h1><p>Merci d'avoir pris le temps de partager les détails de votre projet avec nous.</p><p>Après analyse de votre demande, je tiens à être totalement transparent avec vous : nos systèmes de conversion sur-mesure démarrent à partir de <strong>3 000€</strong>.</p><div class=\"highlight-box\"><h2>Une alternative pour démarrer</h2><p style=\"margin:0;color:#4a4a4a;font-size:15px\">Notre <strong>Audit SYSTÈME en 10 Points</strong> peut être un excellent point de départ pour structurer votre approche digitale et identifier les opportunités de croissance.</p></div><div class=\"cta-wrapper\"><a href=\"https://bit.ly/4nzU6Dm\" class=\"cta-button\">TÉLÉCHARGER L'AUDIT</a></div><p style=\"margin-top:50px;font-size:15px\">Nous restons disponibles si votre projet évolue vers un investissement plus conséquent.</p><p style=\"margin-top:30px;font-size:14px;color:#888\">Cordialement,<br><strong style=\"color:#1a1a1a\">L'équipe NL Project</strong></p></div><div class=\"footer\"><p>Vous recevez cet email suite à votre demande sur nlproject.site</p><div class=\"footer-brand\">NL PROJECT</div><p style=\"margin-top:5px;font-size:12px\">Systèmes de conversion digitale</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "1700dd5e-4e1a-48ea-a2e1-7f03d1a581b0",
+      "name": "Email Refused FR",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [-160, 780],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 1},
+          "conditions": [
+            {
+              "id": "budget-vip",
+              "leftValue": "={{ $('Webhook Briefing').item.json.body.budget }}",
+              "rightValue": "+10 000€",
+              "operator": {"type": "string", "operation": "equals"}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "33f7a397-d649-4bee-a6b7-35b1dee9fcb6",
+      "name": "IF VIP +10K",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [-560, 1160]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 2},
+          "conditions": [
+            {
+              "id": "lang-vip",
+              "leftValue": "={{ $json.lang }}",
+              "rightValue": "en",
+              "operator": {"type": "string", "operation": "equals"}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-360, 1160],
+      "id": "3688fffa-0a6c-4934-8fb1-af1d03e48634",
+      "name": "IF Language VIP"
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "={{ $('Webhook Briefing').item.json.body.email }}",
+        "subject": "=Your project with NL Project — {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}.email-wrapper{max-width:600px;margin:0 auto;background:#ffffff}.vip-header{background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);padding:60px 40px;text-align:center}.vip-badge{display:inline-block;background:#d4af37;color:#1a1a1a;padding:8px 25px;font-size:12px;font-weight:700;letter-spacing:3px;margin-bottom:20px;border-radius:2px}.vip-title{font-size:32px;font-weight:300;letter-spacing:4px;color:#ffffff;margin:0}.vip-subtitle{font-size:15px;font-weight:300;color:#d4af37;margin-top:15px;letter-spacing:1px}.content{padding:60px 40px}.content p{margin-bottom:20px;color:#4a4a4a;font-size:16px;line-height:1.8}.process-box{background:#f8f8f8;padding:40px;margin:40px 0}.process-box h2{font-size:18px;font-weight:500;margin-bottom:25px;color:#1a1a1a}.process-step{margin-bottom:15px;padding-left:30px;position:relative;color:#4a4a4a;font-size:15px;line-height:1.8}.process-step:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;background:#d4af37;border-radius:50%}.investment-highlight{background:#1a1a1a;color:#ffffff;padding:30px;text-align:center;margin:40px 0;border-radius:2px}.investment-highlight p{color:#d4af37;font-size:17px;margin:0;line-height:1.6}.signature{margin-top:50px;padding-top:30px;border-top:1px solid #e0e0e0}.signature p{font-size:15px;color:#4a4a4a;margin-bottom:8px}.signature-name{font-size:16px;font-weight:500;color:#1a1a1a;margin-top:15px}.signature-title{font-size:14px;color:#888;margin-top:5px}.footer{background:#f5f5f5;padding:40px;text-align:center;border-top:1px solid #e0e0e0}.footer p{font-size:13px;color:#888}.footer-brand{font-size:14px;font-weight:500;letter-spacing:2px;color:#1a1a1a;margin-top:20px}@media only screen and (max-width:600px){.content{padding:40px 30px}.vip-header{padding:50px 30px}}</style></head><body><div class=\"email-wrapper\"><div class=\"vip-header\"><div class=\"vip-badge\">ABSOLUTE PRIORITY</div><div class=\"vip-title\">{{ $('Webhook Briefing').item.json.body.firstName }},</div><div class=\"vip-subtitle\">Your vision has our full attention</div></div><div class=\"content\"><p style=\"font-size:17px\">Your project represents exactly the kind of ambition we appreciate supporting.</p><p>The scope of your investment allows us to design a truly custom solution, designed to generate measurable impact on your business objectives.</p><div class=\"process-box\"><h2>Next steps</h2><div class=\"process-step\">In-depth analysis of your briefing within 24 hours</div><div class=\"process-step\">Direct contact for strategic discussion</div><div class=\"process-step\">Development of a personalized proposal adapted to your context</div></div><div class=\"investment-highlight\"><p>Your investment of <strong>{{ $('Webhook Briefing').item.json.body.budget }}</strong> allows us to create an exceptional SYSTEM, calibrated to perform sustainably.</p></div><div class=\"signature\"><p style=\"color:#4a4a4a\">I will personally oversee the study of your project and will contact you very soon.</p><div class=\"signature-name\">Chris Henock</div><div class=\"signature-title\">Founder, NL Project</div></div></div><div class=\"footer\"><p>You are receiving this email following your request on nlproject.site</p><div class=\"footer-brand\">NL PROJECT</div><p style=\"margin-top:5px;font-size:12px\">Digital conversion systems</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "9921415c-3198-45f2-883b-8b2d068c644c",
+      "name": "Email VIP Client EN",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [-160, 1100],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "={{ $('Webhook Briefing').item.json.body.email }}",
+        "subject": "=Votre projet avec NL Project — {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}.email-wrapper{max-width:600px;margin:0 auto;background:#ffffff}.vip-header{background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 100%);padding:60px 40px;text-align:center}.vip-badge{display:inline-block;background:#d4af37;color:#1a1a1a;padding:8px 25px;font-size:12px;font-weight:700;letter-spacing:3px;margin-bottom:20px;border-radius:2px}.vip-title{font-size:32px;font-weight:300;letter-spacing:4px;color:#ffffff;margin:0}.vip-subtitle{font-size:15px;font-weight:300;color:#d4af37;margin-top:15px;letter-spacing:1px}.content{padding:60px 40px}.content p{margin-bottom:20px;color:#4a4a4a;font-size:16px;line-height:1.8}.process-box{background:#f8f8f8;padding:40px;margin:40px 0}.process-box h2{font-size:18px;font-weight:500;margin-bottom:25px;color:#1a1a1a}.process-step{margin-bottom:15px;padding-left:30px;position:relative;color:#4a4a4a;font-size:15px;line-height:1.8}.process-step:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;background:#d4af37;border-radius:50%}.investment-highlight{background:#1a1a1a;color:#ffffff;padding:30px;text-align:center;margin:40px 0;border-radius:2px}.investment-highlight p{color:#d4af37;font-size:17px;margin:0;line-height:1.6}.signature{margin-top:50px;padding-top:30px;border-top:1px solid #e0e0e0}.signature p{font-size:15px;color:#4a4a4a;margin-bottom:8px}.signature-name{font-size:16px;font-weight:500;color:#1a1a1a;margin-top:15px}.signature-title{font-size:14px;color:#888;margin-top:5px}.footer{background:#f5f5f5;padding:40px;text-align:center;border-top:1px solid #e0e0e0}.footer p{font-size:13px;color:#888}.footer-brand{font-size:14px;font-weight:500;letter-spacing:2px;color:#1a1a1a;margin-top:20px}@media only screen and (max-width:600px){.content{padding:40px 30px}.vip-header{padding:50px 30px}}</style></head><body><div class=\"email-wrapper\"><div class=\"vip-header\"><div class=\"vip-badge\">PRIORITÉ ABSOLUE</div><div class=\"vip-title\">{{ $('Webhook Briefing').item.json.body.firstName }},</div><div class=\"vip-subtitle\">Votre vision retient toute notre attention</div></div><div class=\"content\"><p style=\"font-size:17px\">Votre projet représente exactement le type d'ambition que nous apprécions accompagner.</p><p>L'envergure de votre investissement nous permet de concevoir une solution véritablement sur-mesure, pensée pour générer un impact mesurable sur vos objectifs business.</p><div class=\"process-box\"><h2>Les prochaines étapes</h2><div class=\"process-step\">Analyse approfondie de votre briefing sous 24h</div><div class=\"process-step\">Prise de contact directe pour un échange stratégique</div><div class=\"process-step\">Élaboration d'une proposition personnalisée adaptée à votre contexte</div></div><div class=\"investment-highlight\"><p>Votre investissement de <strong>{{ $('Webhook Briefing').item.json.body.budget }}</strong> nous permet de créer un système d'exception, calibré pour performer durablement.</p></div><div class=\"signature\"><p style=\"color:#4a4a4a\">Je superviserai personnellement l'étude de votre projet et vous recontacterai très prochainement.</p><div class=\"signature-name\">Chris Henock</div><div class=\"signature-title\">Fondateur, NL Project</div></div></div><div class=\"footer\"><p>Vous recevez cet email suite à votre demande sur nlproject.site</p><div class=\"footer-brand\">NL PROJECT</div><p style=\"margin-top:5px;font-size:12px\">Systèmes de conversion digitale</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "fa846f12-2dd9-4a53-88a0-589c5a01efdf",
+      "name": "Email VIP Client FR",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [-160, 1220],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "contact.nlproject@gmail.com",
+        "subject": "=🚨 LEAD VIP — {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }} — {{ $('Webhook Briefing').item.json.body.budget }}",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><style>body{font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f5f5;margin:0;padding:20px}.container{max-width:600px;margin:0 auto;background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}.vip-banner{background:linear-gradient(135deg,#d4af37,#f4d03f);padding:30px;text-align:center}.vip-banner h1{margin:0;font-size:28px;font-weight:700;color:#1a1a1a;letter-spacing:2px}.vip-banner p{margin:10px 0 0;font-size:18px;font-weight:600;color:#1a1a1a}.content{padding:40px}.data-row{margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid #e0e0e0}.data-row:last-child{border-bottom:none}.data-label{font-weight:600;color:#1a1a1a;font-size:14px;margin-bottom:5px}.data-value{color:#4a4a4a;font-size:15px;line-height:1.6}.alert-box{background:#1a1a1a;color:#fff;padding:25px;text-align:center;margin-top:30px;border-radius:4px}.alert-box p{margin:0;font-size:16px;font-weight:600;letter-spacing:1px}</style></head><body><div class=\"container\"><div class=\"vip-banner\"><h1>🏆 NOUVEAU LEAD VIP</h1><p>Budget : {{ $('Webhook Briefing').item.json.body.budget }}</p></div><div class=\"content\"><div class=\"data-row\"><div class=\"data-label\">Contact</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}</div></div><div class=\"data-row\"><div class=\"data-label\">Email</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.email }}</div></div><div class=\"data-row\"><div class=\"data-label\">Téléphone</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.telephone || 'Non fourni' }}</div></div><div class=\"data-row\"><div class=\"data-label\">Type de client</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.clientType }}</div></div><div class=\"data-row\"><div class=\"data-label\">Objectif business</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.businessObjective }}</div></div><div class=\"data-row\"><div class=\"data-label\">Site existant</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.existingWebsite || 'Aucun' }}</div></div><div class=\"alert-box\"><p>⏰ CONTACTER SOUS 24H MAXIMUM</p></div></div></div></body></html>",
+        "options": {}
+      },
+      "id": "aff2ffb0-5699-4543-b8eb-d895be862f65",
+      "name": "Email Interne VIP",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [40, 1160],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "6442589987",
+        "text": "=🏆 *ALERTE VIP* 🏆\n\n*Budget:* {{ $('Webhook Briefing').item.json.body.budget }} 💰\n\n*Client:* {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}\n*Email:* {{ $('Webhook Briefing').item.json.body.email }}\n*Tél:* {{ $('Webhook Briefing').item.json.body.telephone || 'Non fourni' }}\n\n*Type:* {{ $('Webhook Briefing').item.json.body.clientType }}\n*Objectif:* {{ $('Webhook Briefing').item.json.body.businessObjective }}\n*Site:* {{ $('Webhook Briefing').item.json.body.existingWebsite || 'Aucun' }}\n\n🚨 *CONTACTER SOUS 24H MAX* 🚨",
+        "additionalFields": {"parse_mode": "Markdown"}
+      },
+      "id": "9288f0d6-9dd4-4b90-909a-31c3d6d6d4df",
+      "name": "Telegram VIP",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [240, 1160],
+      "credentials": {
+        "telegramApi": {
+          "id": "pOCUL9oK5McTbkMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict"},
+          "conditions": [
+            {
+              "id": "budget-qualified",
+              "leftValue": "={{ $('Webhook Briefing').item.json.body.budget }}",
+              "rightValue": "5000€ - 10 000€",
+              "operator": {"type": "string", "operation": "equals"}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a9021311-af9d-481a-a54e-0cc2a6a87c5f",
+      "name": "IF Qualified 5-10K",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [-360, 1460]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 2},
+          "conditions": [
+            {
+              "id": "lang-qualified",
+              "leftValue": "={{ $json.lang }}",
+              "rightValue": "en",
+              "operator": {"type": "string", "operation": "equals"}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-160, 1460],
+      "id": "if-lang-qualified",
+      "name": "IF Language Qualified"
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "={{ $('Webhook Briefing').item.json.body.email }}",
+        "subject": "=Your briefing — {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}.email-wrapper{max-width:600px;margin:0 auto;background:#ffffff}.header{background:#1a1a1a;padding:50px 40px;text-align:center}.logo{font-size:24px;font-weight:300;letter-spacing:8px;color:#ffffff;margin:0}.content{padding:60px 40px}.content h1{font-size:28px;font-weight:300;margin-bottom:30px;color:#1a1a1a}.content p{margin-bottom:20px;color:#4a4a4a;font-size:16px;line-height:1.8}.timeline-box{background:#f8f8f8;padding:40px;margin:40px 0}.timeline-box h2{font-size:18px;font-weight:500;margin-bottom:25px;color:#1a1a1a}.timeline-step{margin-bottom:15px;padding-left:30px;position:relative;color:#4a4a4a;font-size:15px}.timeline-step:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;background:#1a1a1a;border-radius:50%}.signature{margin-top:50px;padding-top:30px;border-top:1px solid #e0e0e0}.signature p{font-size:15px;color:#4a4a4a;margin-bottom:8px}.signature-name{font-size:16px;font-weight:500;color:#1a1a1a;margin-top:15px}.signature-title{font-size:14px;color:#888;margin-top:5px}.footer{background:#f5f5f5;padding:40px;text-align:center;border-top:1px solid #e0e0e0}.footer p{font-size:13px;color:#888}.footer-brand{font-size:14px;font-weight:500;letter-spacing:2px;color:#1a1a1a;margin-top:20px}@media only screen and (max-width:600px){.content{padding:40px 30px}.header{padding:40px 30px}}</style></head><body><div class=\"email-wrapper\"><div class=\"header\"><div class=\"logo\">NL PROJECT</div></div><div class=\"content\"><h1>{{ $('Webhook Briefing').item.json.body.firstName }},</h1><p>Thank you for sharing the details of your project with us.</p><p>Your request has been registered and will be thoroughly analyzed by our team.</p><div class=\"timeline-box\"><h2>Next steps</h2><div class=\"timeline-step\">Detailed study of your needs (24-48h)</div><div class=\"timeline-step\">Contact to deepen the context</div><div class=\"timeline-step\">Development of a proposal adapted to your objectives</div></div><div class=\"signature\"><p>We will get back to you very soon to discuss the best approach for your SYSTEM.</p><div class=\"signature-name\">The NL Project team</div></div></div><div class=\"footer\"><p>You are receiving this email following your request on nlproject.site</p><div class=\"footer-brand\">NL PROJECT</div><p style=\"margin-top:5px;font-size:12px\">Digital conversion systems</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "email-qualified-en",
+      "name": "Email Qualified Client EN",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [40, 1400],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "={{ $('Webhook Briefing').item.json.body.email }}",
+        "subject": "=Votre briefing — {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}.email-wrapper{max-width:600px;margin:0 auto;background:#ffffff}.header{background:#1a1a1a;padding:50px 40px;text-align:center}.logo{font-size:24px;font-weight:300;letter-spacing:8px;color:#ffffff;margin:0}.content{padding:60px 40px}.content h1{font-size:28px;font-weight:300;margin-bottom:30px;color:#1a1a1a}.content p{margin-bottom:20px;color:#4a4a4a;font-size:16px;line-height:1.8}.timeline-box{background:#f8f8f8;padding:40px;margin:40px 0}.timeline-box h2{font-size:18px;font-weight:500;margin-bottom:25px;color:#1a1a1a}.timeline-step{margin-bottom:15px;padding-left:30px;position:relative;color:#4a4a4a;font-size:15px}.timeline-step:before{content:'';position:absolute;left:0;top:8px;width:6px;height:6px;background:#1a1a1a;border-radius:50%}.signature{margin-top:50px;padding-top:30px;border-top:1px solid #e0e0e0}.signature p{font-size:15px;color:#4a4a4a;margin-bottom:8px}.signature-name{font-size:16px;font-weight:500;color:#1a1a1a;margin-top:15px}.signature-title{font-size:14px;color:#888;margin-top:5px}.footer{background:#f5f5f5;padding:40px;text-align:center;border-top:1px solid #e0e0e0}.footer p{font-size:13px;color:#888}.footer-brand{font-size:14px;font-weight:500;letter-spacing:2px;color:#1a1a1a;margin-top:20px}@media only screen and (max-width:600px){.content{padding:40px 30px}.header{padding:40px 30px}}</style></head><body><div class=\"email-wrapper\"><div class=\"header\"><div class=\"logo\">NL PROJECT</div></div><div class=\"content\"><h1>{{ $('Webhook Briefing').item.json.body.firstName }},</h1><p>Merci d'avoir partagé les détails de votre projet avec nous.</p><p>Votre demande a bien été enregistrée et fera l'objet d'une analyse approfondie de notre part.</p><div class=\"timeline-box\"><h2>Prochaines étapes</h2><div class=\"timeline-step\">Étude détaillée de vos besoins (24-48h)</div><div class=\"timeline-step\">Prise de contact pour approfondir le contexte</div><div class=\"timeline-step\">Élaboration d'une proposition adaptée à vos objectifs</div></div><div class=\"signature\"><p>Nous reviendrons vers vous très prochainement pour échanger sur la meilleure approche pour votre SYSTÈME.</p><div class=\"signature-name\">L'équipe NL Project</div></div></div><div class=\"footer\"><p>Vous recevez cet email suite à votre demande sur nlproject.site</p><div class=\"footer-brand\">NL PROJECT</div><p style=\"margin-top:5px;font-size:12px\">Systèmes de conversion digitale</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "a788dadc-5e0e-499d-ba6c-3fb5ff775704",
+      "name": "Email Qualified Client FR",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [40, 1520],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "contact.nlproject@gmail.com",
+        "subject": "=🔥 Lead Qualifié — {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }} — {{ $('Webhook Briefing').item.json.body.budget }}",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><style>body{font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f5f5;margin:0;padding:20px}.container{max-width:600px;margin:0 auto;background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}.header-banner{background:linear-gradient(135deg,#0FA47A,#0ec990);padding:30px;text-align:center}.header-banner h1{margin:0;font-size:26px;font-weight:700;color:#fff;letter-spacing:1px}.header-banner p{margin:10px 0 0;font-size:18px;font-weight:600;color:#fff}.content{padding:40px}.data-row{margin-bottom:15px;padding-bottom:15px;border-bottom:1px solid #e0e0e0}.data-row:last-child{border-bottom:none}.data-label{font-weight:600;color:#1a1a1a;font-size:14px;margin-bottom:5px}.data-value{color:#4a4a4a;font-size:15px;line-height:1.6}.alert-box{background:#ff9500;color:#fff;padding:20px;text-align:center;margin-top:30px;border-radius:4px}.alert-box p{margin:0;font-size:15px;font-weight:600}</style></head><body><div class=\"container\"><div class=\"header-banner\"><h1>NOUVEAU LEAD QUALIFIÉ</h1><p>Budget : {{ $('Webhook Briefing').item.json.body.budget }}</p></div><div class=\"content\"><div class=\"data-row\"><div class=\"data-label\">Contact</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}</div></div><div class=\"data-row\"><div class=\"data-label\">Email</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.email }}</div></div><div class=\"data-row\"><div class=\"data-label\">Téléphone</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.telephone || 'Non fourni' }}</div></div><div class=\"data-row\"><div class=\"data-label\">Type de client</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.clientType }}</div></div><div class=\"data-row\"><div class=\"data-label\">Objectif business</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.businessObjective }}</div></div><div class=\"data-row\"><div class=\"data-label\">Site existant</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.existingWebsite || 'Aucun' }}</div></div><div class=\"alert-box\"><p>⚡ Contacter sous 48h</p></div></div></div></body></html>",
+        "options": {}
+      },
+      "id": "2618169e-970e-4cb6-a686-07ba13103c37",
+      "name": "Email Interne Qualified",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [240, 1460],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "6442589987",
+        "text": "=🔥 *Lead Qualifié* 🔥\n\n*Budget:* {{ $('Webhook Briefing').item.json.body.budget }}\n\n*Client:* {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}\n*Email:* {{ $('Webhook Briefing').item.json.body.email }}\n*Tél:* {{ $('Webhook Briefing').item.json.body.telephone || 'Non fourni' }}\n\n*Objectif:* {{ $('Webhook Briefing').item.json.body.businessObjective }}\n*Site:* {{ $('Webhook Briefing').item.json.body.existingWebsite || 'Aucun' }}\n\n⚡ Contacter sous 48h",
+        "additionalFields": {"parse_mode": "Markdown"}
+      },
+      "id": "648e090e-a8e9-4580-97fe-4d5a5d641151",
+      "name": "Telegram Qualified",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [440, 1460],
+      "credentials": {
+        "telegramApi": {
+          "id": "pOCUL9oK5McTbkMR",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {"caseSensitive": true, "leftValue": "", "typeValidation": "strict", "version": 2},
+          "conditions": [
+            {
+              "id": "lang-standard",
+              "leftValue": "={{ $json.lang }}",
+              "rightValue": "en",
+              "operator": {"type": "string", "operation": "equals"}
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [-160, 1760],
+      "id": "if-lang-standard",
+      "name": "IF Language Standard"
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "={{ $('Webhook Briefing').item.json.body.email }}",
+        "subject": "=Your request — {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}.email-wrapper{max-width:600px;margin:0 auto;background:#ffffff}.header{background:#1a1a1a;padding:50px 40px;text-align:center}.logo{font-size:24px;font-weight:300;letter-spacing:8px;color:#ffffff;margin:0}.content{padding:60px 40px}.content h1{font-size:28px;font-weight:300;margin-bottom:30px;color:#1a1a1a}.content p{margin-bottom:20px;color:#4a4a4a;font-size:16px;line-height:1.8}.signature{margin-top:50px;padding-top:30px;border-top:1px solid #e0e0e0}.signature p{font-size:15px;color:#4a4a4a;margin-bottom:8px}.signature-name{font-size:16px;font-weight:500;color:#1a1a1a;margin-top:15px}.signature-title{font-size:14px;color:#888;margin-top:5px}.footer{background:#f5f5f5;padding:40px;text-align:center;border-top:1px solid #e0e0e0}.footer p{font-size:13px;color:#888}.footer-brand{font-size:14px;font-weight:500;letter-spacing:2px;color:#1a1a1a;margin-top:20px}@media only screen and (max-width:600px){.content{padding:40px 30px}.header{padding:40px 30px}}</style></head><body><div class=\"email-wrapper\"><div class=\"header\"><div class=\"logo\">NL PROJECT</div></div><div class=\"content\"><h1>{{ $('Webhook Briefing').item.json.body.firstName }},</h1><p>Thank you for your request.</p><p>I have taken note of the information you shared and I will study it carefully.</p><p>I will get back to you in the coming days to discuss your project.</p><div class=\"signature\"><p>If you have any questions in the meantime, please don't hesitate.</p><div class=\"signature-name\">Chris Henock</div><div class=\"signature-title\">Founder, NL Project</div></div></div><div class=\"footer\"><p>You are receiving this email following your request on nlproject.site</p><div class=\"footer-brand\">NL PROJECT</div><p style=\"margin-top:5px;font-size:12px\">Digital conversion systems</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "email-standard-en",
+      "name": "Email Standard Client EN",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [40, 1700],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "={{ $('Webhook Briefing').item.json.body.email }}",
+        "subject": "=Votre demande — {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1.0\"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6}.email-wrapper{max-width:600px;margin:0 auto;background:#ffffff}.header{background:#1a1a1a;padding:50px 40px;text-align:center}.logo{font-size:24px;font-weight:300;letter-spacing:8px;color:#ffffff;margin:0}.content{padding:60px 40px}.content h1{font-size:28px;font-weight:300;margin-bottom:30px;color:#1a1a1a}.content p{margin-bottom:20px;color:#4a4a4a;font-size:16px;line-height:1.8}.signature{margin-top:50px;padding-top:30px;border-top:1px solid #e0e0e0}.signature p{font-size:15px;color:#4a4a4a;margin-bottom:8px}.signature-name{font-size:16px;font-weight:500;color:#1a1a1a;margin-top:15px}.signature-title{font-size:14px;color:#888;margin-top:5px}.footer{background:#f5f5f5;padding:40px;text-align:center;border-top:1px solid #e0e0e0}.footer p{font-size:13px;color:#888}.footer-brand{font-size:14px;font-weight:500;letter-spacing:2px;color:#1a1a1a;margin-top:20px}@media only screen and (max-width:600px){.content{padding:40px 30px}.header{padding:40px 30px}}</style></head><body><div class=\"email-wrapper\"><div class=\"header\"><div class=\"logo\">NL PROJECT</div></div><div class=\"content\"><h1>{{ $('Webhook Briefing').item.json.body.firstName }},</h1><p>Merci pour votre demande.</p><p>J'ai bien pris connaissance des informations que vous avez partagées et je vais les étudier attentivement.</p><p>Je reviendrai vers vous dans les prochains jours pour échanger sur votre projet.</p><div class=\"signature\"><p>Si vous avez des questions entre-temps, n'hésitez pas.</p><div class=\"signature-name\">Chris Henock</div><div class=\"signature-title\">Fondateur, NL Project</div></div></div><div class=\"footer\"><p>Vous recevez cet email suite à votre demande sur nlproject.site</p><div class=\"footer-brand\">NL PROJECT</div><p style=\"margin-top:5px;font-size:12px\">Systèmes de conversion digitale</p></div></div></body></html>",
+        "options": {}
+      },
+      "id": "75d9edac-ffe1-4bbc-914b-1f90c3d49c98",
+      "name": "Email Standard Client FR",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [40, 1820],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "contact.nlproject@gmail.com",
+        "toEmail": "contact.nlproject@gmail.com",
+        "subject": "=📌 Nouveau Lead — {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }} — {{ $('Webhook Briefing').item.json.body.budget }}",
+        "html": "=<!DOCTYPE html><html><head><meta charset=\"UTF-8\"><style>body{font-family:'Helvetica Neue',Arial,sans-serif;background:#f5f5f5;margin:0;padding:20px}.container{max-width:600px;margin:0 auto;background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}.header-banner{background:#1a1a1a;padding:25px;text-align:center}.header-banner h1{margin:0;font-size:24px;font-weight:600;color:#fff}.content{padding:35px}.data-row{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #e0e0e0}.data-row:last-child{border-bottom:none}.data-label{font-weight:600;color:#1a1a1a;font-size:13px;margin-bottom:4px}.data-value{color:#4a4a4a;font-size:14px;line-height:1.6}</style></head><body><div class=\"container\"><div class=\"header-banner\"><h1>Nouveau briefing reçu</h1></div><div class=\"content\"><div class=\"data-row\"><div class=\"data-label\">Contact</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}</div></div><div class=\"data-row\"><div class=\"data-label\">Email</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.email }}</div></div><div class=\"data-row\"><div class=\"data-label\">Téléphone</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.telephone || 'Non fourni' }}</div></div><div class=\"data-row\"><div class=\"data-label\">Budget</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.budget }}</div></div><div class=\"data-row\"><div class=\"data-label\">Objectif</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.businessObjective }}</div></div><div class=\"data-row\"><div class=\"data-label\">Site existant</div><div class=\"data-value\">{{ $('Webhook Briefing').item.json.body.existingWebsite || 'Aucun' }}</div></div></div></div></body></html>",
+        "options": {}
+      },
+      "id": "19d797ad-66d0-49f3-a3ef-02fd5f3318b6",
+      "name": "Email Interne Standard",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [240, 1760],
+      "credentials": {
+        "smtp": {
+          "id": "75IfzkIQCnAi9sdA",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "6442589987",
+        "text": "=📌 *Nouveau Lead*\n\n*Budget:* {{ $('Webhook Briefing').item.json.body.budget }}\n*Nom:* {{ $('Webhook Briefing').item.json.body.firstName }} {{ $('Webhook Briefing').item.json.body.lastName }}\n*Email:* {{ $('Webhook Briefing').item.json.body.email }}",
+        "additionalFields": {"parse_mode": "Markdown"}
+      },
+      "id": "6dc1e292-3c9b-4bf2-97b4-e999a777135d",
+      "name": "Telegram Standard",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [440, 1760],
+      "credentials": {
+        "telegramApi": {
+          "id": "pOCUL9oK5McTbkMR",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook Page Audit": {
+      "main": [[{"node": "Stocker Email Audit", "type": "main", "index": 0}]]
+    },
+    "Stocker Email Audit": {
+      "main": [[{"node": "Email PDF Audit", "type": "main", "index": 0}]]
+    },
+    "Email PDF Audit": {
+      "main": [[{"node": "Response Audit OK", "type": "main", "index": 0}]]
+    },
+    "Webhook Briefing": {
+      "main": [[
+        {"node": "Response Briefing OK", "type": "main", "index": 0},
+        {"node": "Stocker Briefing Supabase", "type": "main", "index": 0}
+      ]]
+    },
+    "Stocker Briefing Supabase": {
+      "main": [[{"node": "IF Budget < 3000€", "type": "main", "index": 0}]]
+    },
+    "IF Budget < 3000€": {
+      "main": [
+        [{"node": "Wait 15 min", "type": "main", "index": 0}],
+        [{"node": "IF VIP +10K", "type": "main", "index": 0}]
+      ]
+    },
+    "Wait 15 min": {
+      "main": [[{"node": "IF Language Refused", "type": "main", "index": 0}]]
+    },
+    "IF Language Refused": {
+      "main": [
+        [{"node": "Email Refused EN", "type": "main", "index": 0}],
+        [{"node": "Email Refused FR", "type": "main", "index": 0}]
+      ]
+    },
+    "IF VIP +10K": {
+      "main": [
+        [{"node": "IF Language VIP", "type": "main", "index": 0}],
+        [{"node": "IF Qualified 5-10K", "type": "main", "index": 0}]
+      ]
+    },
+    "IF Language VIP": {
+      "main": [
+        [
+          {"node": "Email VIP Client EN", "type": "main", "index": 0},
+          {"node": "Email Interne VIP", "type": "main", "index": 0}
+        ],
+        [
+          {"node": "Email VIP Client FR", "type": "main", "index": 0},
+          {"node": "Email Interne VIP", "type": "main", "index": 0}
+        ]
+      ]
+    },
+    "Email Interne VIP": {
+      "main": [[{"node": "Telegram VIP", "type": "main", "index": 0}]]
+    },
+    "IF Qualified 5-10K": {
+      "main": [
+        [{"node": "IF Language Qualified", "type": "main", "index": 0}],
+        [{"node": "IF Language Standard", "type": "main", "index": 0}]
+      ]
+    },
+    "IF Language Qualified": {
+      "main": [
+        [
+          {"node": "Email Qualified Client EN", "type": "main", "index": 0},
+          {"node": "Email Interne Qualified", "type": "main", "index": 0}
+        ],
+        [
+          {"node": "Email Qualified Client FR", "type": "main", "index": 0},
+          {"node": "Email Interne Qualified", "type": "main", "index": 0}
+        ]
+      ]
+    },
+    "Email Interne Qualified": {
+      "main": [[{"node": "Telegram Qualified", "type": "main", "index": 0}]]
+    },
+    "IF Language Standard": {
+      "main": [
+        [
+          {"node": "Email Standard Client EN", "type": "main", "index": 0},
+          {"node": "Email Interne Standard", "type": "main", "index": 0}
+        ],
+        [
+          {"node": "Email Standard Client FR", "type": "main", "index": 0},
+          {"node": "Email Interne Standard", "type": "main", "index": 0}
+        ]
+      ]
+    },
+    "Email Interne Standard": {
+      "main": [[{"node": "Telegram Standard", "type": "main", "index": 0}]]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "multilingual-complete-v1",
+  "id": "workflow-multilingual-complete"
+}
+

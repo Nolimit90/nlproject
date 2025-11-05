@@ -18,8 +18,8 @@ export const en = {
   
   // Demos Section
   demos: {
-    title: "Works",
-    subtitle: "Browse through my latest projects and see how I transform ideas into converting websites.",
+    title: "Our Systems in Action",
+    subtitle: "Discover how we transform websites into conversion machines with strategy, design, and automation.",
     restaurant: {
       title: "Gastronomic Restaurant",
       description: "Elegant website for high-end restaurant",
@@ -27,6 +27,15 @@ export const en = {
         "Clean and modern design",
         "Intuitive navigation",
         "Responsive layout"
+      ]
+    },
+    hotel: {
+      title: "Luxury Hotel",
+      description: "Premium booking experience for high-end hotel",
+      features: [
+        "Smooth booking interface",
+        "Immersive visual gallery",
+        "Conversion optimized"
       ]
     },
     ecommerce: {
@@ -53,18 +62,23 @@ export const en = {
   
   // Benefits Section
   benefits: {
-    title: "Why choose me",
-    mobile: {
-      title: "Mobile-first & responsive",
-      description: "Every website is built mobile-first, ensuring perfect performance across all devices."
+    title: "Our Method: The 4-Tier System",
+    subtitle: "A strategic approach that transforms your website into a profitable conversion machine.",
+    architecture: {
+      title: "01. Architecture (Strategy)",
+      description: "We deconstruct your business to architect a clear message and conversion funnel that transforms visitors into clients."
     },
-    design: {
-      title: "Unique & modern design",
-      description: "Custom designs that reflect your brand identity and stand out from the competition."
+    engineering: {
+      title: "02. Engineering (Design & Code)",
+      description: "We build a frictionless, fast, and intuitive user experience where every design element serves the conversion objective."
     },
-    conversion: {
-      title: "Conversion-focused & SEO-friendly",
-      description: "Strategic layouts and optimized code that drive conversions and rank well in search."
+    automation: {
+      title: "03. Automation (Freedom)",
+      description: "We deploy tracking and follow-up systems that work for you 24/7, nurturing your prospects and maximizing your revenue."
+    },
+    ecosystem: {
+      title: "04. Ecosystem (Applications)",
+      description: "Your system doesn't stop at your website. We extend it into your customers' pockets with native iOS applications that create an immersive experience and build long-term loyalty."
     }
   },
   
