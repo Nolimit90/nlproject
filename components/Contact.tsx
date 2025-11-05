@@ -221,7 +221,7 @@ export default function Contact() {
 
   if (showThankYou) {
     return (
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1A1A1A] via-[#2D2D2D] to-[#1A1A1A] py-32">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1A1A1A] via-[#2D2D2D] to-[#1A1A1A] py-8 sm:py-16 lg:py-32">
         {/* Effet de fond */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#2D5A27] rounded-full blur-3xl"></div>
@@ -231,24 +231,24 @@ export default function Contact() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             {/* Icône de succès */}
-            <div className="w-24 h-24 bg-[#2D5A27] rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl animate-pulse">
-              <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[#2D5A27] rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 md:mb-8 shadow-2xl animate-pulse">
+              <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
               </svg>
             </div>
 
             {/* Titre */}
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-5 md:mb-6 px-2">
               {t.thankYou}
             </h1>
 
             {/* Message */}
-            <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 md:mb-12 leading-relaxed px-4">
               {t.thankYouMessage}
             </p>
 
             {/* Note de réassurance */}
-            <p className="text-sm text-gray-400 mb-12">
+            <p className="text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8 md:mb-12 px-2">
               {lang === 'fr'
                 ? '✓ Réponse sous 24h • ✓ Analyse personnalisée • ✓ Sans engagement'
                 : '✓ Response within 24h • ✓ Personalized analysis • ✓ No commitment'
@@ -258,7 +258,7 @@ export default function Contact() {
             {/* Bouton de fermeture */}
             <button
               onClick={() => setShowThankYou(false)}
-              className="inline-flex items-center justify-center bg-[#2D5A27] text-white px-10 py-4 rounded-lg transition-all duration-300 text-lg font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(45,90,39,0.6)] hover:scale-105 transform uppercase tracking-wider"
+              className="inline-flex items-center justify-center bg-[#2D5A27] text-white px-8 sm:px-10 py-3 sm:py-4 rounded-lg transition-all duration-300 text-base sm:text-lg font-bold shadow-2xl hover:shadow-[0_0_40px_rgba(45,90,39,0.6)] hover:scale-105 transform uppercase tracking-wider"
             >
               {t.close}
             </button>
