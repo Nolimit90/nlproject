@@ -175,7 +175,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    let responseData = { success: true };
+    let responseData: { success: boolean; message?: string } = { success: true };
     try {
       const text = await res.text();
       if (text && text.trim().length > 0) {
