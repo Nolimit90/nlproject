@@ -64,7 +64,7 @@ export default function Header() {
               >
                 <span className="text-2xl font-bold tracking-tight">
                   <span className="text-[#1A1A1A]">NL</span>
-                  <span className="text-[#4A4A4A] ml-1">Project</span>
+                  <span className="text-[#1A1A1A] ml-1">Project</span>
                 </span>
               </Link>
             </div>
@@ -112,7 +112,7 @@ export default function Header() {
               <Link href="/" className="flex items-center">
                 <span className="text-xl font-bold tracking-tight">
                   <span className="text-[#1A1A1A]">NL</span>
-                  <span className="text-[#4A4A4A] ml-0.5">Project</span>
+                  <span className="text-[#1A1A1A] ml-0.5">Project</span>
                 </span>
               </Link>
               
