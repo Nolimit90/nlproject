@@ -267,7 +267,7 @@ interface LanguageProviderProps {
 }
 
 export default function LanguageProvider({ children }: LanguageProviderProps) {
-  const [lang, setLangState] = useState<'fr' | 'en'>('en');
+  const [lang, setLangState] = useState<'fr' | 'en'>('fr'); // 🇫🇷 Défaut en français
 
   useEffect(() => {
     // Load language from localStorage on mount
@@ -275,6 +275,7 @@ export default function LanguageProvider({ children }: LanguageProviderProps) {
     if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
       setLangState(savedLang);
     }
+    // Sinon, on garde 'fr' comme défaut
   }, []);
 
   const setLang = (newLang: 'fr' | 'en') => {
