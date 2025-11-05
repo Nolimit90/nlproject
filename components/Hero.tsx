@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useI18n } from '@/hooks/useI18n';
 import '../app/hero-styles.css';
 
@@ -18,13 +17,12 @@ export default function Hero() {
 
         {/* Logo monogramme avec animation */}
         <div className="logo-hero-container mb-20">
-          <Image 
+          <img 
             src="/hero-logo.png"
             alt="NL Project"
             width={180}
             height={180}
             className="logo-hero"
-            priority
           />
         </div>
         

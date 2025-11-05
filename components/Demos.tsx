@@ -86,8 +86,8 @@ export default function Demos() {
                 </p>
               </div>
 
-              {/* Flèche d'action au hover */}
-              <div className="absolute top-6 right-6 z-20 bg-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {/* Flèche d'action au hover - Masquée sur mobile */}
+              <div className="hidden md:block absolute top-6 right-6 z-20 bg-white rounded-full p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <ArrowRight size={24} className="text-[#2D5A27]" />
               </div>
             </Link>
