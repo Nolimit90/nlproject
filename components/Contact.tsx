@@ -281,7 +281,7 @@ export default function Contact() {
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+          <form onSubmit={handleSubmit} noValidate className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
             {/* Informations personnelles */}
             <div className="mb-8">
               <h3 className="text-xl font-semibold text-[#1A1A1A] mb-6 pb-2 border-b border-gray-200">
