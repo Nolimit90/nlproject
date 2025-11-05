@@ -62,10 +62,39 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validation
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.clientType || !formData.businessObjective || !formData.budget) {
-      alert(lang === 'fr' ? 'Veuillez remplir tous les champs obligatoires (*)' : 'Please fill in all required fields (*)');
-      return;
+    // 🎯 Validation avec scroll automatique vers le premier champ invalide
+    const requiredFields = [
+      { name: 'firstName', id: 'firstName', label: lang === 'fr' ? 'Prénom' : 'First name' },
+      { name: 'lastName', id: 'lastName', label: lang === 'fr' ? 'Nom' : 'Last name' },
+      { name: 'email', id: 'email', label: 'Email' },
+      { name: 'telephone', id: 'telephone', label: lang === 'fr' ? 'Téléphone' : 'Phone' },
+      { name: 'clientType', id: 'clientType', label: lang === 'fr' ? 'Défi principal' : 'Main challenge' },
+      { name: 'businessObjective', id: 'businessObjective', label: lang === 'fr' ? 'Objectif business' : 'Business objective' },
+      { name: 'budget', id: 'budget', label: 'Budget' },
+    ];
+
+    for (const field of requiredFields) {
+      if (!formData[field.name as keyof typeof formData]) {
+        const element = document.getElementById(field.id);
+        if (element) {
+          // Scroll vers le champ
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Focus sur le champ
+          element.focus();
+          // Ajouter une bordure rouge temporaire
+          element.style.borderColor = '#EF4444';
+          element.style.boxShadow = '0 0 0 3px rgba(239, 68, 68, 0.1)';
+          setTimeout(() => {
+            element.style.borderColor = '';
+            element.style.boxShadow = '';
+          }, 3000);
+        }
+        alert(lang === 'fr' 
+          ? `⚠️ Le champ "${field.label}" est obligatoire` 
+          : `⚠️ The field "${field.label}" is required`
+        );
+        return;
+      }
     }
     
     setIsSubmitting(true);
@@ -312,7 +341,7 @@ export default function Contact() {
 
                 <div className="space-y-2">
                   <label htmlFor="telephone" className="block text-sm font-medium text-gray-700">
-                    {t.phone}
+                    {t.phone} *
                   </label>
                   <div className="flex gap-2">
                     {/* Sélecteur d'indicatif pays */}
@@ -345,6 +374,7 @@ export default function Contact() {
                       type="tel"
                       id="telephone"
                       name="telephone"
+                      required
                       value={formData.telephone}
                       onChange={handleInputChange}
                       className="flex-1 min-w-0 px-3 sm:px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
