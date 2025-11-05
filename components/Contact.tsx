@@ -320,7 +320,7 @@ export default function Contact() {
                       name="countryCode"
                       value={formData.countryCode}
                       onChange={handleInputChange}
-                      className="w-32 px-3 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white cursor-pointer"
+                      className="w-24 sm:w-28 px-2 sm:px-3 py-3 text-sm sm:text-base border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white cursor-pointer"
                       disabled={isSubmitting}
                     >
                       <option value="+33">🇫🇷 +33</option>
@@ -347,7 +347,7 @@ export default function Contact() {
                       name="telephone"
                       value={formData.telephone}
                       onChange={handleInputChange}
-                      className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
+                      className="flex-1 min-w-0 px-3 sm:px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0FA47A] focus:border-transparent transition-all duration-200 bg-gray-50 hover:bg-white"
                       placeholder={lang === 'fr' ? '6 12 34 56 78' : '6 12 34 56 78'}
                       disabled={isSubmitting}
                     />
